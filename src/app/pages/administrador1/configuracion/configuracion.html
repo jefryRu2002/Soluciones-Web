@@ -1,0 +1,262 @@
+<!-- configuracion.html -->
+<div class="config-page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>⚙️ Configuración</h1>
+      <p>Gestión de usuarios y credenciales del sistema</p>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <div class="config-nav">
+    <button [class.activo]="vistaActual === 'usuarios'" (click)="vistaActual = 'usuarios'">
+      👥 Gestión de usuarios
+    </button>
+    <button [class.activo]="vistaActual === 'tecnicos'" (click)="vistaActual = 'tecnicos'">
+      🔧 Crear técnico
+    </button>
+    <button [class.activo]="vistaActual === 'perfil'" (click)="vistaActual = 'perfil'">
+      👤 Mi perfil
+    </button>
+  </div>
+
+  <!-- ── GESTIÓN DE USUARIOS ── -->
+  @if (vistaActual === 'usuarios') {
+
+    <div class="stats-cards">
+      <div class="stat-card">
+        <div class="label">Clientes</div>
+        <div class="value">{{ totalClientes() }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Técnicos</div>
+        <div class="value">{{ totalTecnicos() }}</div>
+      </div>
+      <div class="stat-card s-danger">
+        <div class="label">Inactivos</div>
+        <div class="value">{{ totalInactivos() }}</div>
+      </div>
+    </div>
+
+    <div class="buscador-container">
+      <input
+        type="text"
+        placeholder="Buscar por nombre o correo..."
+        [(ngModel)]="buscador">
+    </div>
+
+    <div class="tabla-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Rol</th>
+            <th>Registro</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (u of usuariosFiltrados(); track u.id) {
+            <tr>
+              <td>{{ u.nombre }}</td>
+              <td>{{ u.correo }}</td>
+              <td>
+                <span class="rol-badge" [class.tecnico]="u.rol === 'tecnico'">
+                  {{ u.rol }}
+                </span>
+              </td>
+              <td>{{ u.fechaRegistro }}</td>
+              <td>
+                <span class="estado"
+                  [class.terminado]="u.activo"
+                  [class.pendiente]="!u.activo">
+                  {{ u.activo ? 'Activo' : 'Inactivo' }}
+                </span>
+              </td>
+              <td class="acciones">
+                <button
+                  class="btn-toggle"
+                  [class.desactivar]="u.activo"
+                  (click)="toggleUsuario(u.id)"
+                  [title]="u.activo ? 'Desactivar' : 'Activar'">
+                  {{ u.activo ? '🔒' : '🔓' }}
+                </button>
+                <button
+                  class="btn-eliminar"
+                  (click)="eliminarUsuario(u.id)"
+                  title="Eliminar">
+                  🗑️
+                </button>
+              </td>
+            </tr>
+          }
+
+          @if (usuariosFiltrados().length === 0) {
+            <tr>
+              <td colspan="6" class="empty">No se encontraron usuarios</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <div class="footer-table">
+        <span>{{ usuariosFiltrados().length }} usuario(s) encontrado(s)</span>
+      </div>
+    </div>
+  }
+
+  <!-- ── CREAR TÉCNICO ── -->
+  @if (vistaActual === 'tecnicos') {
+
+    <div class="form-card">
+
+      <div class="form-card-header">
+        <h2>🔧 Crear credenciales de técnico</h2>
+        <p>Las credenciales serán enviadas al técnico para acceder al sistema</p>
+      </div>
+
+      @if (errorRegistro) {
+        <div class="alerta-error">⚠️ {{ errorRegistro }}</div>
+      }
+
+      @if (tecnicoRegistrado) {
+        <div class="alerta-exito">✅ Técnico registrado exitosamente</div>
+      }
+
+      <div class="form-grid">
+
+        <div class="form-grupo">
+          <label>Nombre completo *</label>
+          <input
+            type="text"
+            placeholder="Ej: Carlos Torres"
+            [(ngModel)]="nuevoTecnico.nombre">
+        </div>
+
+        <div class="form-grupo">
+          <label>Correo electrónico *</label>
+          <input
+            type="email"
+            placeholder="carlos@sistema.com"
+            [(ngModel)]="nuevoTecnico.correo">
+        </div>
+
+        <div class="form-grupo">
+          <label>Nombre de usuario *</label>
+          <input
+            type="text"
+            placeholder="carlos.torres"
+            [(ngModel)]="nuevoTecnico.usuario">
+        </div>
+
+        <div class="form-grupo">
+          <label>Contraseña *</label>
+          <div class="input-password">
+            <input
+              [type]="mostrarPassword ? 'text' : 'password'"
+              placeholder="Mínimo 6 caracteres"
+              [(ngModel)]="nuevoTecnico.password">
+            <button
+              class="btn-ver"
+              (click)="mostrarPassword = !mostrarPassword">
+              {{ mostrarPassword ? '🙈' : '👁️' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="form-grupo full">
+          <label>Confirmar contraseña *</label>
+          <input
+            [type]="mostrarPassword ? 'text' : 'password'"
+            placeholder="Repite la contraseña"
+            [(ngModel)]="nuevoTecnico.confirmarPassword">
+        </div>
+
+      </div>
+
+      <button class="btn-nuevo" (click)="registrarTecnico()">
+        + Registrar técnico
+      </button>
+
+    </div>
+  }
+
+  <!-- ── MI PERFIL ── -->
+  @if (vistaActual === 'perfil') {
+
+    <div class="form-card">
+
+      <div class="form-card-header">
+        <h2>👤 Mi perfil</h2>
+        <p>Actualiza tu información y contraseña de acceso</p>
+      </div>
+
+      @if (errorPerfil) {
+        <div class="alerta-error">⚠️ {{ errorPerfil }}</div>
+      }
+
+      @if (perfilGuardado) {
+        <div class="alerta-exito">✅ Perfil actualizado correctamente</div>
+      }
+
+      <div class="form-grid">
+
+        <div class="form-grupo">
+          <label>Nombre *</label>
+          <input
+            type="text"
+            [(ngModel)]="perfilAdmin.nombre">
+        </div>
+
+        <div class="form-grupo">
+          <label>Correo electrónico *</label>
+          <input
+            type="email"
+            [(ngModel)]="perfilAdmin.correo">
+        </div>
+
+      </div>
+
+      <div class="separador">
+        <span>Cambiar contraseña (opcional)</span>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-grupo full">
+          <label>Contraseña actual</label>
+          <input
+            type="password"
+            placeholder="Ingresa tu contraseña actual"
+            [(ngModel)]="perfilAdmin.passwordActual">
+        </div>
+
+        <div class="form-grupo">
+          <label>Nueva contraseña</label>
+          <input
+            type="password"
+            placeholder="Mínimo 6 caracteres"
+            [(ngModel)]="perfilAdmin.passwordNueva">
+        </div>
+
+        <div class="form-grupo">
+          <label>Confirmar nueva contraseña</label>
+          <input
+            type="password"
+            placeholder="Repite la nueva contraseña"
+            [(ngModel)]="perfilAdmin.confirmarNueva">
+        </div>
+
+      </div>
+
+      <button class="btn-nuevo" (click)="guardarPerfil()">
+        💾 Guardar cambios
+      </button>
+
+    </div>
+  }
+
+</div>

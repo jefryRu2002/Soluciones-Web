@@ -1,0 +1,369 @@
+/* ============================================
+   VARIABLES GLOBALES
+   ============================================ */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --warning: #f59e0b;
+    --warning-light: #fef3c7;
+    --danger: #ef4444;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-300: #e5e7eb;
+    --gray-400: #94a3b8;
+    --gray-600: #64748b;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+}
+
+/* ============================================
+   LAYOUT PRINCIPAL
+   ============================================ */
+.ordenes-page {
+    width: 100%;
+    padding: 24px;
+    background: var(--gray-50);
+    min-height: 100vh;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-300);
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-900);
+}
+
+.header p {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-top: 4px;
+}
+
+/* ============================================
+   GRID PRINCIPAL
+   ============================================ */
+.ordenes-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 16px;
+}
+
+/* ============================================
+   LISTA DE ÓRDENES
+   ============================================ */
+.ordenes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Tarjeta de orden */
+.orden-item {
+    background: white;
+    border: 0.5px solid var(--gray-300);
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.orden-item:hover {
+    border-color: var(--primary);
+    transform: translateX(2px);
+}
+
+.orden-item.activa {
+    border-color: var(--primary);
+    background: #f0f7ff;
+}
+
+/* Contenido de la tarjeta */
+.orden-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.orden-item strong {
+    display: block;
+    font-size: 14px;
+    color: var(--gray-900);
+    margin-bottom: 2px;
+}
+
+.orden-item p {
+    font-size: 12px;
+    color: var(--gray-600);
+    margin-bottom: 4px;
+}
+
+.orden-item small {
+    font-size: 11px;
+    color: var(--gray-400);
+}
+
+/* ============================================
+   DETALLE DE ORDEN
+   ============================================ */
+.orden-detalle {
+    width: 100%;
+}
+
+/* Estado vacío */
+.empty-detalle {
+    background: white;
+    border: 0.5px solid var(--gray-300);
+    border-radius: 12px;
+    padding: 60px;
+    text-align: center;
+    color: var(--gray-400);
+    font-size: 14px;
+}
+
+/* Tarjeta de detalle */
+.detalle-card {
+    background: white;
+    border: 0.5px solid var(--gray-300);
+    border-radius: 14px;
+    padding: 28px;
+}
+
+/* Header del detalle */
+.detalle-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-300);
+}
+
+/* Badge del ticket */
+.ticket-badge {
+    background: var(--gray-100);
+    color: var(--gray-600);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+
+.ticket-badge.grande {
+    font-size: 15px;
+    padding: 6px 14px;
+}
+
+/* Grid de campos */
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.detalle-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detalle-campo.full {
+    grid-column: 1 / -1;
+}
+
+.detalle-campo label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.detalle-campo p {
+    font-size: 14px;
+    color: var(--gray-800);
+}
+
+/* Descripción */
+.descripcion {
+    background: var(--gray-100);
+    border-radius: 8px;
+    padding: 12px;
+    line-height: 1.6;
+    font-size: 14px;
+    color: var(--gray-700);
+}
+
+/* ============================================
+   ESTADOS
+   ============================================ */
+.estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.estado::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Estado Pendiente */
+.pendiente {
+    background: var(--warning-light);
+    color: #92400e;
+}
+
+.pendiente::before {
+    background: var(--warning);
+}
+
+/* Estado En Proceso */
+.en-proceso {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.en-proceso::before {
+    background: var(--primary);
+}
+
+/* Estado Terminado */
+.terminado {
+    background: var(--success-light);
+    color: #065f46;
+}
+
+.terminado::before {
+    background: var(--success);
+}
+
+/* Estado Devuelto */
+.devuelto {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.devuelto::before {
+    background: var(--danger);
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+.btn-recepcionar {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.btn-recepcionar:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-recepcionar:active {
+    transform: translateY(0);
+}
+
+.btn-recepcionar:disabled {
+    background: var(--gray-400);
+    cursor: not-allowed;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .ordenes-page {
+        padding: 16px;
+    }
+
+    .ordenes-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .detalle-card {
+        padding: 20px;
+    }
+
+    .detalle-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .orden-item {
+        padding: 12px;
+    }
+
+    .empty-detalle {
+        padding: 40px;
+    }
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detalle-card {
+    animation: fadeIn 0.3s ease;
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+.ordenes-lista::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ordenes-lista::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 10px;
+}
+
+.ordenes-lista::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 10px;
+}
+
+.ordenes-lista::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-600);
+}

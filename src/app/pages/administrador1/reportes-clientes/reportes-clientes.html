@@ -1,0 +1,105 @@
+<div class="reportes-page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>📋 Reportes de clientes</h1>
+      <p>Gestión completa de solicitudes de reparación</p>
+    </div>
+    <button class="btn-nuevo" (click)="nuevoReporte()">
+      + Nuevo reporte
+    </button>
+  </div>
+
+  <!-- TARJETAS DE RESUMEN -->
+  <div class="stats">
+    <div class="stat-card s-pend">
+      <div class="label">Pendientes</div>
+      <div class="value">{{ totalPendientes() }}</div>
+    </div>
+    <div class="stat-card s-proc">
+      <div class="label">En proceso</div>
+      <div class="value">{{ totalEnProceso() }}</div>
+    </div>
+    <div class="stat-card s-term">
+      <div class="label">Terminados</div>
+      <div class="value">{{ totalTerminados() }}</div>
+    </div>
+  </div>
+
+  <!-- BUSCADOR -->
+  <div class="buscador-container">
+    <span class="search-icon">🔍</span>
+    <input
+      type="text"
+      placeholder="Buscar por cliente o ticket..."
+      [(ngModel)]="buscador">
+  </div>
+
+  <!-- TABLA -->
+  <div class="tabla-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket</th>
+          <th>Cliente</th>
+          <th>Equipo</th>
+          <th>Estado</th>
+          <th>Técnico</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngIf="reportesFiltrados().length === 0">
+          <td colspan="7" class="empty">
+            No se encontraron registros
+          </td>
+        </tr>
+
+        <tr *ngFor="let reporte of reportesFiltrados()">
+
+          <td>
+            <span class="ticket-badge">#{{ reporte.ticket }}</span>
+          </td>
+
+          <td>{{ reporte.cliente }}</td>
+          <td>{{ reporte.equipo }}</td>
+
+          <td>
+            <span class="estado" [ngClass]="{
+              'pendiente': reporte.estado === 'Pendiente',
+              'proceso':   reporte.estado === 'En Proceso',
+              'terminado': reporte.estado === 'Terminado'
+            }">
+              {{ reporte.estado }}
+            </span>
+          </td>
+
+          <td>{{ reporte.tecnico }}</td>
+          <td>{{ reporte.fecha }}</td>
+
+          <td class="acciones">
+            <button class="btn-editar"
+              title="Editar"
+              (click)="editarReporte(reporte)">
+              ✏️
+            </button>
+            <button class="btn-eliminar"
+              title="Eliminar"
+              (click)="eliminarReporte(reporte.ticket)">
+              🗑️
+            </button>
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="footer-table">
+      <span>{{ reportesFiltrados().length }} registro(s) encontrado(s)</span>
+    </div>
+
+  </div>
+</div>

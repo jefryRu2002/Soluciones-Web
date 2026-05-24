@@ -1,4 +1,33 @@
-.contenido {
-  margin-left: 250px;
-  padding: 20px;
+.layout{
+    display: flex;
+    min-height: 100vh;
+    background: #f4f7fb;
+}
+
+
+/* SIDEBAR */
+
+app-sidebar{
+    width:260px;
+    position:fixed;
+    left:0;
+    top:0;
+    height:100vh;
+    z-index:1000;
+}
+
+/* CONTENIDO */
+
+.contenido{
+
+    flex:1;
+
+    margin-left:260px;
+
+    padding:30px;
+
+    width:calc(100% - 260px);
+
+    overflow-x:hidden;
+
 }

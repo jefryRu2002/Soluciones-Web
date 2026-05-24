@@ -1,0 +1,150 @@
+<div class="seguimiento-page">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                🎫 Seguimiento de Tickets
+            </h1>
+
+            <p>
+                Control y monitoreo de reparaciones
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- GRID -->
+
+    <div class="tickets-grid">
+
+        <div
+            class="ticket-card"
+            *ngFor="let ticket of tickets">
+
+            <!-- TOP -->
+
+            <div class="ticket-top">
+
+                <div>
+
+                    <h2>
+                        {{ ticket.codigo }}
+                    </h2>
+
+                    <span>
+                        {{ ticket.fecha }}
+                    </span>
+
+                </div>
+
+                <div class="estado">
+
+                    {{ ticket.estado }}
+
+                </div>
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="ticket-info">
+
+                <p>
+                    👤 Cliente:
+                    <strong>
+                        {{ ticket.cliente }}
+                    </strong>
+                </p>
+
+                <p>
+                    💻 Equipo:
+                    <strong>
+                        {{ ticket.equipo }}
+                    </strong>
+                </p>
+
+                <p>
+                    👨‍🔧 Técnico:
+                    <strong>
+                        {{ ticket.tecnico }}
+                    </strong>
+                </p>
+
+            </div>
+
+            <!-- PROGRESO -->
+
+            <div class="progress-section">
+
+                <div class="progress-info">
+
+                    <span>
+                        Progreso
+                    </span>
+
+                    <strong>
+                        {{ ticket.progreso }}%
+                    </strong>
+
+                </div>
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        [style.width.%]="ticket.progreso">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- TIMELINE -->
+
+            <div class="timeline">
+
+                <div class="step active">
+                    Reportado
+                </div>
+
+                <div class="step active">
+                    Recibido
+                </div>
+
+                <div
+                    class="step"
+                    [class.active]="ticket.progreso >= 40">
+
+                    Diagnóstico
+
+                </div>
+
+                <div
+                    class="step"
+                    [class.active]="ticket.progreso >= 70">
+
+                    Reparación
+
+                </div>
+
+                <div
+                    class="step"
+                    [class.active]="ticket.progreso >= 100">
+
+                    Entrega
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

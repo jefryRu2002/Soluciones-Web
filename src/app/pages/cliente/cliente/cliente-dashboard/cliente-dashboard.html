@@ -1,0 +1,74 @@
+<!-- cliente-das.html -->
+<div class="dashboard-page">
+
+  <div class="header">
+    <div>
+      <h1>🏠 Bienvenido, {{ nombreCliente }}</h1>
+      <p>Panel de control de tus solicitudes de reparación</p>
+    </div>
+  </div>
+
+  <div class="stats-cards">
+    @for (item of resumen; track item.label) {
+      <div class="stat-card" [class]="item.color">
+        <div class="icono">{{ item.icono }}</div>
+        <div class="info">
+          <div class="value">{{ item.value }}</div>
+          <div class="label">{{ item.label }}</div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="accesos-rapidos">
+    <a routerLink="../generar-reporte" class="acceso-card">
+      <span>📝</span>
+      <p>Generar reporte de falla</p>
+    </a>
+    <a routerLink="../estado-solicitudes" class="acceso-card">
+      <span>📍</span>
+      <p>Ver estado de solicitudes</p>
+    </a>
+    <a routerLink="../notificaciones" class="acceso-card">
+      <span>🔔</span>
+      <p>Notificaciones</p>
+    </a>
+    <a routerLink="../perfil" class="acceso-card">
+      <span>👤</span>
+      <p>Mi perfil</p>
+    </a>
+  </div>
+
+  <div class="tabla-container">
+    <div class="tabla-header">
+      <h2>Solicitudes recientes</h2>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket</th>
+          <th>Equipo</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of solicitudesRecientes; track s.ticket) {
+          <tr>
+            <td><span class="ticket-badge">{{ s.ticket }}</span></td>
+            <td>{{ s.equipo }}</td>
+            <td>
+              <span class="estado" [ngClass]="{
+                'pendiente': s.estado === 'Pendiente',
+                'proceso':   s.estado === 'En Proceso',
+                'terminado': s.estado === 'Terminado'
+              }">{{ s.estado }}</span>
+            </td>
+            <td>{{ s.fecha }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

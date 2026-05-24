@@ -1,0 +1,51 @@
+<div class="rep-page">
+
+  <div class="header">
+    <div>
+      <h1>🔧 Reparaciones en curso</h1>
+      <p>Actualiza el estado de cada equipo durante el proceso</p>
+    </div>
+  </div>
+
+  <div class="reparaciones-lista">
+    @for (r of reparaciones(); track r.ticket) {
+      <div class="rep-card">
+
+        <div class="rep-top">
+          <div class="rep-info">
+            <span class="ticket-badge">{{ r.ticket }}</span>
+            <div>
+              <strong>{{ r.equipo }}</strong>
+              <p>{{ r.cliente }}</p>
+            </div>
+          </div>
+          <div class="rep-meta">
+            <span class="estado" [ngClass]="claseEstado(r.estado)">{{ r.estado }}</span>
+            <small>Plazo: {{ r.plazo }}</small>
+          </div>
+        </div>
+
+        <div class="pipeline-mini">
+          @for (paso of estados; track paso; let i = $index) {
+            <div class="paso-mini"
+              [class.activo]="r.estado === paso"
+              [class.completado]="estados.indexOf(r.estado) > i">
+              <div class="punto"></div>
+              <span>{{ paso }}</span>
+            </div>
+          }
+        </div>
+
+        @if (r.estado !== 'Listo para entrega') {
+          <button class="btn-avanzar" (click)="avanzar(r.ticket)">
+            ▶ Avanzar a "{{[r.estado] }}"
+          </button>
+        } @else {
+          <div class="listo-badge">🎉 Listo para entrega al cliente</div>
+        }
+
+      </div>
+    }
+  </div>
+
+</div>

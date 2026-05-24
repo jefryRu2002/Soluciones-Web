@@ -1,98 +1,94 @@
-<div class="contenedor">
+<form (ngSubmit)="iniciarSesion()">
 
-    <div class="login-box">
+  <!-- LOGIN -->
+  <div *ngIf="!mostrarMFA">
 
-        <h1 class="titulo">
-            {{titulo}}
-        </h1>
+    <div class="input-group">
 
-        <p class="subtitulo">
-            Ingrese sus credenciales
-        </p>
+      <label>Usuario</label>
 
-        <form>
-
-            <!-- LOGIN -->
-            <div *ngIf="!mostrarMFA">
-
-                <div class="input-group">
-
-                    <label>Usuario</label>
-
-                    <input 
-                        type="text"
-                        placeholder="Ingrese Usuario"
-                        [(ngModel)]="usuario"
-                        name="usuario">
-
-                </div>
-
-                <div class="input-group">
-
-                    <label>Contraseña</label>
-
-                    <input 
-                        type="password"
-                        placeholder="Ingrese Contraseña"
-                        [(ngModel)]="contrasena"
-                        name="contrasena">
-
-                </div>
-
-                <button 
-                    type="submit"
-                    class="btn-login">
-
-                    Iniciar Sesión
-
-                </button>
-
-                <div class="opciones">
-
-                    <button 
-                        type="button"
-                        class="link-btn"
-                        (click)="mostrarMFA = true">
-
-                        Opciones de inicio
-
-                    </button>
-
-                </div>
-
-            </div>
-
-            <!-- MFA -->
-            <div class="mfa-box" *ngIf="mostrarMFA">
-
-                <!-- Flecha regresar -->
-                <button
-                    type="button"
-                    class="back-btn"
-                    (click)="mostrarMFA = false">
-
-                    ← Regresar
-
-                </button>
-
-                <h3>Autenticación MFA</h3>
-
-                <button type="button" class="mfa-btn">
-                    Código SMS
-                </button>
-
-                <button type="button" class="mfa-btn">
-                    Google Authenticator
-                </button>
-
-                <button type="button" class="mfa-btn">
-                    Correo Electrónico
-                </button>
-
-            </div>
-
-        </form>
+      <input 
+        type="text"
+        placeholder="Ingrese Usuario"
+        [(ngModel)]="usuario"
+        name="usuario">
 
     </div>
 
+    <div class="input-group">
+
+      <label>Contraseña</label>
+
+      <input 
+        type="password"
+        placeholder="Ingrese Contraseña"
+        [(ngModel)]="contrasena"
+        name="contrasena">
+
+    </div>
+
+    <button 
+      type="submit"
+      class="btn-login">
+
+      Iniciar Sesión
+
+    </button>
+
+    <div class="opciones">
+
+      <button 
+        type="button"
+        class="link-btn"
+        (click)="mostrarMFA = true">
+
+        Opciones de inicio
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- MFA -->
+  <div class="mfa-box" *ngIf="mostrarMFA">
+
+    <button
+      type="button"
+      class="back-btn"
+      (click)="mostrarMFA = false">
+
+      ← Regresar
+
+    </button>
+
+    <h3>Autenticación MFA</h3>
+
+    <button type="button" class="mfa-btn">
+      Código SMS
+    </button>
+
+    <button type="button" class="mfa-btn">
+      Google Authenticator
+    </button>
+
+    <button type="button" class="mfa-btn">
+      Correo Electrónico
+    </button>
+
+
+    <div class="opciones" *ngIf="!mostrarMFA">
+
+  <button 
+    type="button"
+    class="link-btn"
+    (click)="olvidasteContrasena()">
+
+    ¿Olvidaste tu contraseña?
+
+  </button>
+
 </div>
+  </div>
+
+</form>
