@@ -1,11 +1,38 @@
-<div class="layout">
+<div class="tecnico-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>🔧 Panel Técnico</h2>
+            <p>Sistema de Reparaciones</p>
+        </div>
+        <nav class="nav-menu">
+            <a routerLink="/tecnico/ordenes-asignadas" routerLinkActive="active">
+                <span class="icon">📋</span>
+                <span>Órdenes Asignadas</span>
+            </a>
+            <a routerLink="/tecnico/evaluacion-equipo" routerLinkActive="active">
+                <span class="icon">🔍</span>
+                <span>Evaluación de Equipos</span>
+            </a>
+            <a routerLink="/tecnico/reparaciones-curso" routerLinkActive="active">
+                <span class="icon">⚙️</span>
+                <span>Reparaciones en Curso</span>
+            </a>
+            <a routerLink="/tecnico/pruebas-funcionamiento" routerLinkActive="active">
+                <span class="icon">🧪</span>
+                <span>Pruebas de Funcionamiento</span>
+            </a>
+        </nav>
+        <div class="user-info">
+            <span>👨‍🔧 {{ nombreTecnico }}</span>
+            <button class="btn-logout" (click)="cerrarSesion()">
+                🚪 Cerrar Sesión
+            </button>
+        </div>
+    </aside>
 
-    <app-sidebar></app-sidebar>
-
-    <div class="contenido">
-
+    <!-- Contenido Principal -->
+    <main class="main-content">
         <router-outlet></router-outlet>
-
-    </div>
-
+    </main>
 </div>

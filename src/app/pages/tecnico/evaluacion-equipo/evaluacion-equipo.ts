@@ -24,7 +24,7 @@ export interface Evaluacion {
 })
 export class Evaluaciones {
 
-  tickets = ['TK-001 — Laptop HP (Juan Pérez)', 'TK-002 — iPhone 13 (María López)', 'TK-004 — Tablet Samsung (José Ramos)'];
+  tickets = ['TK-001 — Laptop HP (Juan Pérez)', 'TK-002 — Laptop Dell (María López)', 'TK-004 — Laptop Gateway(José Ramos)'];
   ticketSeleccionado = '';
   guardado = false;
   error = '';

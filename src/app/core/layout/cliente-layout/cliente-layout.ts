@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Sidebar } from '../sidebar/sidebar';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-layout',
- imports: [RouterOutlet, Sidebar],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './cliente-layout.html',
-  styleUrl: './cliente-layout.css',
+  styleUrls: ['./cliente-layout.css']
 })
-export class ClienteLayout {}
+export class ClienteLayout {
+  nombreCliente = 'Juan Pérez';
+
+  cerrarSesion() {
+    localStorage.removeItem('clienteActual');
+    window.location.href = '/login';
+  }
+}

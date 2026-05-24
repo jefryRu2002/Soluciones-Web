@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import { Login } from './pages/login/login'
 
 import { AdminLayout } from './core/layout/admin-layout/admin-layout';
+import { ClienteLayout } from './core/layout/cliente-layout/cliente-layout';
+import { TecnicoLayout } from './core/layout/tecnico-layout/tecnico-layout';
 
 import { Dashboard } from './pages/administrador1/dashboard/dashboard';
 import { ReportesClientes } from './pages/administrador1/reportes-clientes/reportes-clientes';
@@ -15,14 +17,13 @@ import { Pagos } from './pages/administrador1/pagos/pagos';
 import { Devoluciones } from './pages/administrador1/devoluciones/devoluciones';
 import { Configuracion } from './pages/administrador1/configuracion/configuracion';
 
-// IMPORTAR COMPONENTES DE CLIENTE
+// IMPORTAR COMPONENTES DE CLIENTE (páginas)
 import { ClienteDashboard } from './pages/cliente/cliente/cliente-dashboard/cliente-dashboard';
 import { GenerarReporte } from './pages/cliente/cliente/generar-reporte/generar-reporte';
 import { EstadoSolicitudes } from './pages/cliente/cliente/estado-solicitudes/estado-solicitudes';
 import { Notificaciones } from './pages/cliente/cliente/notificaciones/notificaciones';
 
-// IMPORTAR COMPONENTES DE TECNICO
-import { TecnicoDashboard } from './pages/tecnico/tecnico-dashboard/tecnico-dashboard';
+// IMPORTAR COMPONENTES DE TECNICO (páginas)
 import { OrdenesAsignadas } from './pages/tecnico/ordenes-asignadas/ordenes-asignadas';
 import { Evaluaciones as EvaluacionEquipo } from './pages/tecnico/evaluacion-equipo/evaluacion-equipo';
 import { Reparaciones as ReparacionesCurso } from './pages/tecnico/reparaciones-curso/reparaciones-curso';
@@ -60,9 +61,9 @@ export const routes: Routes = [
   // ==========================================
   {
     path: 'cliente',
-    component: ClienteDashboard,
+    component: ClienteLayout,
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: ClienteDashboard },
       { path: 'generar-reporte', component: GenerarReporte },
       { path: 'estado-solicitudes', component: EstadoSolicitudes },
@@ -75,9 +76,9 @@ export const routes: Routes = [
   // ==========================================
   {
     path: 'tecnico',
-    component: TecnicoDashboard,
+    component: TecnicoLayout,
     children: [
-      { path: '', redirectTo: 'ordenes-asignadas', pathMatch: 'full' },
+      { path: '', pathMatch: 'full', redirectTo: 'ordenes-asignadas' },
       { path: 'ordenes-asignadas', component: OrdenesAsignadas },
       { path: 'evaluacion-equipo', component: EvaluacionEquipo },
       { path: 'reparaciones-curso', component: ReparacionesCurso },

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';  // ← Agrega Router
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cliente-dashboard',
@@ -11,9 +11,9 @@ import { RouterModule, Router } from '@angular/router';  // ← Agrega Router
 })
 export class ClienteDashboard implements OnInit {
 
-  nombreCliente = 'Juan Pérez';
-  emailCliente = 'cliente@test.com';
-  telefonoCliente = '999999999';
+  nombreCliente = 'Cargando...';
+  emailCliente = '';
+  telefonoCliente = '';
 
   resumen = [
     { label: 'Solicitudes activas', value: 0, icono: '🔧', color: 'azul' },
@@ -23,161 +23,106 @@ export class ClienteDashboard implements OnInit {
 
   solicitudesRecientes: any[] = [];
   notificacionesNoLeidas = 0;
-  notificaciones: any[] = [];
 
-  constructor(private router: Router) {  // ← Inyecta Router
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
     this.cargarDatosIniciales();
-  }
-
-  ngOnInit() {
     this.cargarClienteActual();
     this.actualizarDashboard();
   }
 
-  // ==================== INICIALIZACIÓN ====================
-
-  cargarDatosIniciales() {
-    if (!localStorage.getItem('solicitudes')) {
+  cargarDatosIniciales(): void {
+    if (!localStorage.getItem('solicitudes_cliente')) {
       const solicitudesIniciales = [
-        { 
-          id: '1',
-          codigo: 'TK-001', 
-          equipo: 'Laptop HP', 
-          modelo: 'Pavilion 15',
-          serie: 'HP-12345',
-          falla: 'No enciende',
-          estado: 'En Proceso', 
-          fecha: '20/05/2026',
-          pago: 'pendiente'
+        {
+          id: '1', codigo: 'REP-001', equipo: 'Laptop HP', modelo: 'Pavilion 15',
+          serie: 'HP-12345', falla: 'No enciende, no muestra imagen',
+          estado: 'En Proceso', fecha: new Date('2026-05-20').toISOString(), pago: 'pendiente'
         },
-        { 
-          id: '2',
-          codigo: 'TK-002', 
-          equipo: 'iPhone 13', 
-          modelo: 'A2487',
-          serie: 'IP-67890',
-          falla: 'Pantalla rota',
-          estado: 'Pendiente', 
-          fecha: '21/05/2026',
-          pago: 'pagado'
+        {
+          id: '2', codigo: 'REP-002', equipo: 'iPhone 13', modelo: 'A2487',
+          serie: 'IP-67890', falla: 'Pantalla rota, no responde',
+          estado: 'Pendiente', fecha: new Date('2026-05-21').toISOString(), pago: 'pagado'
         },
-        { 
-          id: '3',
-          codigo: 'TK-003', 
-          equipo: 'PC Gamer', 
-          modelo: 'RTX 3060',
-          serie: 'PC-11111',
-          falla: 'Sobrecalentamiento',
-          estado: 'Terminado', 
-          fecha: '18/05/2026',
-          pago: 'pagado'
+        {
+          id: '3', codigo: 'REP-003', equipo: 'PC Gamer', modelo: 'RTX 3060',
+          serie: 'PC-11111', falla: 'Sobrecalentamiento, se apaga solo',
+          estado: 'Terminado', fecha: new Date('2026-05-18').toISOString(), pago: 'pagado'
         }
       ];
-      localStorage.setItem('solicitudes', JSON.stringify(solicitudesIniciales));
-    }
-
-    if (!localStorage.getItem('notificaciones')) {
-      const notificacionesIniciales = [
-        { id: '1', titulo: 'Solicitud recibida', mensaje: 'Tu solicitud TK-001 ha sido recibida', fecha: new Date().toISOString(), leida: false, tipo: 'info' },
-        { id: '2', titulo: 'Actualización de estado', mensaje: 'Tu equipo TK-002 está en diagnóstico', fecha: new Date().toISOString(), leida: false, tipo: 'success' }
-      ];
-      localStorage.setItem('notificaciones', JSON.stringify(notificacionesIniciales));
+      localStorage.setItem('solicitudes_cliente', JSON.stringify(solicitudesIniciales));
     }
 
     if (!localStorage.getItem('clienteActual')) {
       localStorage.setItem('clienteActual', JSON.stringify({
-        nombre: 'Juan Pérez',
-        email: 'cliente@test.com',
-        telefono: '999999999',
-        dni: '12345678'
+        nombre: 'Juan Pérez', email: 'cliente@test.com',
+        telefono: '999999999', dni: '12345678'
       }));
     }
   }
 
-  cargarClienteActual() {
+  cargarClienteActual(): void {
     const cliente = localStorage.getItem('clienteActual');
     if (cliente) {
       const data = JSON.parse(cliente);
-      this.nombreCliente = data.nombre;
-      this.emailCliente = data.email;
-      this.telefonoCliente = data.telefono;
+      this.nombreCliente   = data.nombre   || 'Cliente';
+      this.emailCliente    = data.email    || '';
+      this.telefonoCliente = data.telefono || '';
     }
   }
 
-  actualizarDashboard() {
+  actualizarDashboard(): void {
     this.cargarSolicitudes();
-    this.cargarNotificaciones();
     this.actualizarResumen();
-  }
-
-  cargarSolicitudes() {
-    const solicitudes = JSON.parse(localStorage.getItem('solicitudes') || '[]');
-    this.solicitudesRecientes = solicitudes.slice(0, 3);
-  }
-
-  actualizarResumen() {
-    const solicitudes = JSON.parse(localStorage.getItem('solicitudes') || '[]');
-    
-    this.resumen[0].value = solicitudes.filter((s: any) => 
-      s.estado !== 'Terminado' && s.estado !== 'Devuelto'
-    ).length;
-    
-    this.resumen[1].value = solicitudes.filter((s: any) => 
-      s.pago === 'pendiente'
-    ).length;
-    
-    this.resumen[2].value = solicitudes.filter((s: any) => 
-      s.estado === 'Terminado'
-    ).length;
-  }
-
-  cargarNotificaciones() {
-    const notificaciones = JSON.parse(localStorage.getItem('notificaciones') || '[]');
-    this.notificaciones = notificaciones;
-    this.notificacionesNoLeidas = notificaciones.filter((n: any) => !n.leida).length;
-  }
-
-  agregarNotificacion(titulo: string, mensaje: string, tipo: string = 'info') {
-    const notificaciones = JSON.parse(localStorage.getItem('notificaciones') || '[]');
-    const nueva = {
-      id: Date.now().toString(),
-      titulo,
-      mensaje,
-      fecha: new Date().toISOString(),
-      leida: false,
-      tipo
-    };
-    notificaciones.unshift(nueva);
-    localStorage.setItem('notificaciones', JSON.stringify(notificaciones));
     this.cargarNotificaciones();
+  }
+
+  cargarSolicitudes(): void {
+    const solicitudes = JSON.parse(localStorage.getItem('solicitudes_cliente') || '[]');
+    this.solicitudesRecientes = [...solicitudes]
+      .sort((a: any, b: any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
+      .slice(0, 3);
+  }
+
+  actualizarResumen(): void {
+    const solicitudes = JSON.parse(localStorage.getItem('solicitudes_cliente') || '[]');
+    this.resumen[0].value = solicitudes.filter((s: any) =>
+      s.estado !== 'Terminado' && s.estado !== 'Devuelto' && s.estado !== 'Entregado'
+    ).length;
+    this.resumen[1].value = solicitudes.filter((s: any) => s.pago === 'pendiente').length;
+    this.resumen[2].value = solicitudes.filter((s: any) =>
+      s.estado === 'Terminado' || s.estado === 'Entregado'
+    ).length;
+  }
+
+  cargarNotificaciones(): void {
+    const notificaciones = JSON.parse(localStorage.getItem('notificaciones_cliente') || '[]');
+    this.notificacionesNoLeidas = notificaciones.filter((n: any) => !n.leida).length;
   }
 
   getEstadoClass(estado: string): string {
     const clases: Record<string, string> = {
-      'Pendiente': 'pendiente',
+      'Pendiente':  'pendiente',
       'En Proceso': 'proceso',
-      'Terminado': 'terminado',
-      'Devuelto': 'devuelto'
+      'Terminado':  'terminado',
+      'Devuelto':   'devuelto',
+      'Entregado':  'terminado'
     };
     return clases[estado] || 'pendiente';
   }
 
-  // ==================== MÉTODOS DE NAVEGACIÓN ====================
-  
-  irAGenerarReporte() {
-    this.router.navigate(['/cliente/generar-reporte']);
+  getFechaFormateada(fechaISO: string): string {
+    return new Date(fechaISO).toLocaleDateString('es-ES');
   }
 
-  irAEstadoSolicitudes() {
-    this.router.navigate(['/cliente/estado-solicitudes']);
-  }
-
-  irANotificaciones() {
-    this.router.navigate(['/cliente/notificaciones']);
-  }
-
-  cerrarSesion() {
+  // NAVEGACIÓN
+  irAGenerarReporte(): void    { this.router.navigate(['/cliente/generar-reporte']); }
+  irAEstadoSolicitudes(): void { this.router.navigate(['/cliente/estado-solicitudes']); }
+  irANotificaciones(): void    { this.router.navigate(['/cliente/notificaciones']); }
+  irAMiPerfil(): void          { this.router.navigate(['/cliente/perfil']); }
+  cerrarSesion(): void {
     localStorage.removeItem('clienteActual');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }

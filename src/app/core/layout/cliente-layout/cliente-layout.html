@@ -1,11 +1,42 @@
-<div class="layout">
+<div class="cliente-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>👤 Panel Cliente</h2>
+            <p>Sistema de Reparaciones</p>
+        </div>
+        <nav class="nav-menu">
+            <a routerLink="/cliente/dashboard" routerLinkActive="active">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a routerLink="/cliente/generar-reporte" routerLinkActive="active">
+                <span class="icon">📝</span>
+                <span>Generar Reporte</span>
+            </a>
+            <a routerLink="/cliente/estado-solicitudes" routerLinkActive="active">
+                <span class="icon">📋</span>
+                <span>Estado Solicitudes</span>
+            </a>
+            <a routerLink="/cliente/notificaciones" routerLinkActive="active">
+                <span class="icon">🔔</span>
+                <span>Notificaciones</span>
+            </a>
+            <a routerLink="/cliente/mi-perfil" routerLinkActive="active">
+                <span class="icon">👤</span>
+                <span>Mi Perfil</span>
+            </a>
+        </nav>
+        <div class="user-info">
+            <span>👤 {{ nombreCliente }}</span>
+            <button class="btn-logout" (click)="cerrarSesion()">
+                🚪 Cerrar Sesión
+            </button>
+        </div>
+    </aside>
 
-    <app-sidebar></app-sidebar>
-
-    <div class="contenido">
-
+    <!-- ⚠️ IMPORTANTE: Debe tener router-outlet -->
+    <main class="main-content">
         <router-outlet></router-outlet>
-
-    </div>
-
+    </main>
 </div>
