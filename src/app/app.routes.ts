@@ -28,14 +28,29 @@ import { OrdenesAsignadas } from './pages/tecnico/ordenes-asignadas/ordenes-asig
 import { Evaluaciones as EvaluacionEquipo } from './pages/tecnico/evaluacion-equipo/evaluacion-equipo';
 import { Reparaciones as ReparacionesCurso } from './pages/tecnico/reparaciones-curso/reparaciones-curso';
 import { PruebasFuncionamiento } from './pages/tecnico/pruebas-funcionamiento/pruebas-funcionamiento';
+import { Registrarusuario } from './pages/registrarusuario/registrarusuario';
+import { Olvidocontrasena } from './pages/olvidocontrasena/olvidocontrasena';
+import { ClientePerfil } from './pages/cliente/cliente/cliente/cliente';
 
 export const routes: Routes = [
 
-  // LOGIN
-  {
-    path: '',
-    component: Login
-  },
+// LOGIN
+{
+  path: '',
+  component: Login
+},
+
+// REGISTRO
+{ 
+  path: 'registrarusuario',
+  component: Registrarusuario
+},
+
+// OLVIDO CONTRASEÑA
+{
+  path: 'olvidocontrasena',
+  component: Olvidocontrasena
+},
 
   // ADMINISTRADOR
   {
@@ -67,7 +82,8 @@ export const routes: Routes = [
       { path: 'dashboard', component: ClienteDashboard },
       { path: 'generar-reporte', component: GenerarReporte },
       { path: 'estado-solicitudes', component: EstadoSolicitudes },
-      { path: 'notificaciones', component: Notificaciones }
+      { path: 'notificaciones', component: Notificaciones },
+      {path:'cliente', component:ClientePerfil}
     ]
   },
 

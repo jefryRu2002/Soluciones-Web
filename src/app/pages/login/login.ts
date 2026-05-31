@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -8,99 +8,95 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.css'] 
+  styleUrls: ['./login.css']
 })
-export class Login {
+export class Login implements OnInit {
 
-  titulo = "Bienvenido";
+  titulo: string = 'Bienvenido';
 
-  usuario = "";
-  contrasena = "";
+  usuario: string = '';
+  contrasena: string = '';
 
-  mostrarMFA = false;
-  codigoMFA = "";
+  mostrarMFA: boolean = false;
+  codigoMFA: string = '';
 
-  rol: string = "";
-  esCliente = false;
+  rol: string = '';
+  esCliente: boolean = false;
 
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    console.log("Login cargado correctamente");
+  ngOnInit(): void {
+    console.log('Login cargado correctamente');
   }
 
-  iniciarSesion() {
+  iniciarSesion(): void {
 
-    // 🔥 validación básica
     if (!this.usuario || !this.contrasena) {
-      alert("Por favor rellene los espacios");
+      alert('Por favor rellene los espacios');
       return;
     }
 
-    // 🔥 usuarios simulados
-    const usuariosValidos = ["admin", "tecnico", "cliente"];
+    const usuariosValidos: string[] = ['admin', 'tecnico', 'cliente'];
 
     if (!usuariosValidos.includes(this.usuario)) {
-      alert("Usuario incorrecto");
+      alert('Usuario incorrecto');
       this.resetLogin();
       return;
     }
 
-    // 🔐 asignar rol
-    if (this.usuario === "admin") {
-      this.rol = "admin";
-    } else if (this.usuario === "tecnico") {
-      this.rol = "tecnico";
+    if (this.usuario === 'admin') {
+      this.rol = 'admin';
+    } else if (this.usuario === 'tecnico') {
+      this.rol = 'tecnico';
     } else {
-      this.rol = "cliente";
+      this.rol = 'cliente';
     }
 
-    // 👇 detectar cliente
-    this.esCliente = this.rol === "cliente";
-
-    // 🔐 activar MFA
+    this.esCliente = this.rol === 'cliente';
     this.mostrarMFA = true;
   }
 
-  validarMFA() {
+  validarMFA(): void {
 
-    if (this.codigoMFA !== "1234") {
-      alert("Código MFA incorrecto");
+    if (this.codigoMFA !== '1234') {
+      alert('Código MFA incorrecto');
       return;
     }
 
-    localStorage.setItem("role", this.rol);
-    localStorage.setItem("usuario", this.usuario);
+    localStorage.setItem('role', this.rol);
+    localStorage.setItem('usuario', this.usuario);
 
-    alert("Acceso permitido");
+    alert('Acceso permitido');
 
-    // 🚀 redirección por rol
-    if (this.rol === "admin") {
-      this.router.navigate(['/administrador/dashboard']);
-      return;
-    }
+    switch (this.rol) {
+      case 'admin':
+        this.router.navigate(['/administrador/dashboard']);
+        break;
 
-    if (this.rol === "tecnico") {
-      this.router.navigate(['/administrador/tecnico']);
-      return;
-    }
+      case 'tecnico':
+        this.router.navigate(['/tecnico/ordenes-asignadas']);
+        break;
 
-    if (this.rol === "cliente") {
-      this.router.navigate(['/administrador/perfil-cliente']);
-      return;
+      case 'cliente':
+        this.router.navigate(['/cliente/dashboard']);
+        break;
     }
   }
 
-  resetLogin() {
-    this.usuario = "";
-    this.contrasena = "";
+  irARegistro(): void {
+    this.router.navigate(['/registrarusuario']);
+  }
+
+  olvidasteContrasena(): void {
+    this.router.navigate(['/olvidocontrasena']);
+  }
+
+  resetLogin(): void {
+    this.usuario = '';
+    this.contrasena = '';
     this.mostrarMFA = false;
-    this.codigoMFA = "";
-    this.rol = "";
+    this.codigoMFA = '';
+    this.rol = '';
     this.esCliente = false;
-  }
-
-  olvidasteContrasena() {
-    alert("Se enviará un enlace de recuperación al correo (simulado)");
   }
 }

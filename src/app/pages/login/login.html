@@ -1,94 +1,66 @@
-<form (ngSubmit)="iniciarSesion()">
+<div class="contenedor">
+  <div class="login-box">
 
-  <!-- LOGIN -->
-  <div *ngIf="!mostrarMFA">
+    <!-- Título principal -->
+    <h2 class="titulo" *ngIf="!mostrarMFA">Bienvenido a ZolutionsTic</h2>
+    <p class="subtitulo" *ngIf="!mostrarMFA">Ingresa tus credenciales para continuar</p>
 
-    <div class="input-group">
+    <form (ngSubmit)="iniciarSesion()">
+      
+      <!-- SECCIÓN: LOGIN -->
+      <div *ngIf="!mostrarMFA">
+        <div class="input-group">
+          <label>Usuario</label>
+          <input type="text" placeholder="Correo o número de teléfono" [(ngModel)]="usuario" name="usuario" required>
+        </div>
+        
+        <div class="input-group">
+          <label>Contraseña</label>
+          <input type="password" placeholder="Contraseña" [(ngModel)]="contrasena" name="contrasena" required>
+        </div>
+        
+        <button type="submit" class="btn-login">
+          Iniciar sesión
+        </button>
+        
+        <!-- Opciones ordenadas como Facebook -->
+        <div class="opciones">
+          <a href="#" class="link-btn" (click)="olvidasteContrasena(); $event.preventDefault()">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
 
-      <label>Usuario</label>
+        <!-- Línea divisoria -->
+        <div class="divider"></div>
 
-      <input 
-        type="text"
-        placeholder="Ingrese Usuario"
-        [(ngModel)]="usuario"
-        name="usuario">
+        <!-- Botón de crear cuenta nueva -->
+        <div class="crear-cuenta">
+          <button type="button" class="btn-crear-cuenta" (click)="irARegistro()">
+            Crear cuenta nueva
+          </button>
+        </div>
 
-    </div>
+        <!-- Pie de página opcional -->
+        <div class="meta-footer" *ngIf="false">
+          <span class="meta-text">Meta</span>
+        </div>
+      </div>
 
-    <div class="input-group">
+      <!-- SECCIÓN: MFA -->
+      <div class="mfa-box" *ngIf="mostrarMFA">
+        <button type="button" class="back-btn" (click)="mostrarMFA = false">
+          ← Regresar
+        </button>
+        
+        <h3>Autenticación MFA</h3>
+        <p class="subtitulo">Selecciona un método para verificar tu identidad</p>
+        
+        <button type="button" class="mfa-btn">Código SMS</button>
+        <button type="button" class="mfa-btn">Google Authenticator</button>
+        <button type="button" class="mfa-btn">Correo Electrónico</button>
+      </div>
 
-      <label>Contraseña</label>
-
-      <input 
-        type="password"
-        placeholder="Ingrese Contraseña"
-        [(ngModel)]="contrasena"
-        name="contrasena">
-
-    </div>
-
-    <button 
-      type="submit"
-      class="btn-login">
-
-      Iniciar Sesión
-
-    </button>
-
-    <div class="opciones">
-
-      <button 
-        type="button"
-        class="link-btn"
-        (click)="mostrarMFA = true">
-
-        Opciones de inicio
-
-      </button>
-
-    </div>
+    </form>
 
   </div>
-
-  <!-- MFA -->
-  <div class="mfa-box" *ngIf="mostrarMFA">
-
-    <button
-      type="button"
-      class="back-btn"
-      (click)="mostrarMFA = false">
-
-      ← Regresar
-
-    </button>
-
-    <h3>Autenticación MFA</h3>
-
-    <button type="button" class="mfa-btn">
-      Código SMS
-    </button>
-
-    <button type="button" class="mfa-btn">
-      Google Authenticator
-    </button>
-
-    <button type="button" class="mfa-btn">
-      Correo Electrónico
-    </button>
-
-
-    <div class="opciones" *ngIf="!mostrarMFA">
-
-  <button 
-    type="button"
-    class="link-btn"
-    (click)="olvidasteContrasena()">
-
-    ¿Olvidaste tu contraseña?
-
-  </button>
-
 </div>
-  </div>
-
-</form>
