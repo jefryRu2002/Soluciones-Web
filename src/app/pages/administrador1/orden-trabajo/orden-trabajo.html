@@ -1,0 +1,132 @@
+<div class="orden-container">
+
+    <div class="header">
+
+        <div class="titulo">
+            📋
+            <h2>ÓRDENES DE TRABAJO</h2>
+        </div>
+
+        <div class="usuario">
+            Administrador 👤
+        </div>
+
+    </div>
+
+    <div class="contenido">
+
+        <!-- TABLA -->
+
+        <div class="tabla-card">
+
+            <h3>Listado de Órdenes de Trabajo</h3>
+
+            <div class="toolbar">
+
+                <button
+                    class="btn-nueva"
+                    (click)="nuevaOrden()">
+
+                    + Nueva Orden
+
+                </button>
+
+                <div class="filtros">
+
+                    <input
+                        type="text"
+                        placeholder="Buscar orden, ticket, cliente o técnico..."
+                    >
+
+                    <select>
+                        <option>Estado: Todos</option>
+                        <option>Pendiente</option>
+                        <option>En revisión</option>
+                        <option>En proceso</option>
+                        <option>Finalizado</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID Orden</th>
+                        <th>Ticket</th>
+                        <th>Cliente</th>
+                        <th>Equipo</th>
+                        <th>Problema</th>
+                        <th>Técnico</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let orden of ordenes">
+
+                        <td class="codigo">{{orden.id}}</td>
+                        <td>{{orden.ticket}}</td>
+                        <td>{{orden.cliente}}</td>
+                        <td>{{orden.equipo}}</td>
+                        <td>{{orden.problema}}</td>
+                        <td>{{orden.tecnico}}</td>
+                        <td>{{orden.fecha}}</td>
+
+                        <td>
+
+                            <span
+                                class="estado"
+                                [ngClass]="orden.estado.toLowerCase().replace(' ','-')">
+
+                                {{orden.estado}}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="acciones">
+
+                                <button
+                                    class="btn-ver"
+                                    (click)="ver(orden.id)">
+                                    👁
+                                </button>
+
+                                <button
+                                    class="btn-editar"
+                                    (click)="editar(orden.id)">
+                                    ✏️
+                                </button>
+
+                                <button
+                                    class="btn-eliminar"
+                                    (click)="eliminar(orden.id)">
+                                    🗑
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="footer">
+                Mostrando 1 a 4 de 4 órdenes
+            </div>
+        </div>
+    </div>
+</div>

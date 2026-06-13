@@ -1,0 +1,284 @@
+<div class="tickets-container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="titulo">
+            🎫 <h2>TICKETS</h2>
+        </div>
+
+    </div>
+
+    <div class="contenido">
+
+        <!-- HISTORIAL -->
+        <div class="historial">
+
+            <h3>Historial de Tickets</h3>
+
+            <div class="acciones">
+
+                <input
+                    type="text"
+                    placeholder="Buscar ticket, cliente o equipo...">
+
+                <select [(ngModel)]="estadoFiltro">
+
+    <option value="Todos">
+        Todos
+    </option>
+
+    <option value="Pendiente">
+        Pendiente
+    </option>
+
+    <option value="En revisión">
+        En revisión
+    </option>
+
+    <option value="En proceso">
+        En proceso
+    </option>
+
+    <option value="Finalizado">
+        Finalizado
+    </option>
+
+    <option value="Cancelado">
+        Cancelado
+    </option>
+
+</select>
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID Ticket</th>
+                        <th>Cliente</th>
+                        <th>Fecha Creación</th>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let ticket of ticketsFiltrados">
+
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.cliente }}</td>
+                        <td>{{ ticket.fecha }}</td>
+
+                        <td>
+                            <span
+                                class="estado"
+                                [ngClass]="ticket.estado.toLowerCase().replace(' ','-')">
+
+                                {{ ticket.estado }}
+
+                            </span>
+                        </td>
+
+                        <td>{{ ticket.descripcion }}</td>
+
+                        <td class="acciones-tabla">
+
+                            <button
+                                class="btn-orden"
+                                (click)="abrirModalOrden()">
+
+                                Crear Orden
+
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL CREAR ORDEN -->
+
+<div
+    class="modal-overlay"
+    *ngIf="mostrarModalOrden">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h3>Crear Orden de Trabajo</h3>
+
+            <button
+                class="btn-close"
+                (click)="cerrarModalOrden()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>ID Ticket</label>
+
+            <select [(ngModel)]="orden.id_ticket">
+
+    <option value="">
+        Seleccione Ticket
+    </option>
+
+    <option value="TK-0001">
+        TK-0001 - Juan Pérez
+    </option>
+
+    <option value="TK-0002">
+        TK-0002 - María López
+    </option>
+
+    <option value="TK-0003">
+        TK-0003 - Carlos Ruiz
+    </option>
+
+</select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>ID Equipo</label>
+
+            <select [(ngModel)]="orden.id_equipo">
+
+    <option value="">
+        Seleccione Equipo
+    </option>
+
+    <option value="1">
+        Laptop HP Pavilion
+    </option>
+
+    <option value="2">
+        Laptop Lenovo ThinkPad
+    </option>
+
+    <option value="3">
+        PC Gamer Ryzen 7
+    </option>
+
+</select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>ID Problema</label>
+
+            <input
+                type="text"
+                [(ngModel)]="orden.id_problema"
+                placeholder="Ingrese ID Problema">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>ID Técnico</label>
+
+            <select [(ngModel)]="orden.id_tecnico">
+
+    <option value="">
+        Seleccione Técnico
+    </option>
+
+    <option value="1">
+        Carlos Mendoza
+    </option>
+
+    <option value="2">
+        Luis Rojas
+    </option>
+
+    <option value="3">
+        Ana Flores
+    </option>
+
+</select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Fecha Ingreso</label>
+
+            <input
+                type="datetime-local"
+                [(ngModel)]="orden.fecha_ingreso">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Estado</label>
+
+            <select [(ngModel)]="orden.estado">
+
+                <option value="PENDIENTE">
+                    PENDIENTE
+                </option>
+
+                <option value="ASIGNADA">
+                    ASIGNADA
+                </option>
+
+                <option value="EN_PROCESO">
+                    EN PROCESO
+                </option>
+
+                <option value="FINALIZADA">
+                    FINALIZADA
+                </option>
+
+                <option value="CANCELADA">
+                    CANCELADA
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="botones">
+
+            <button
+                class="cancelar"
+                (click)="cerrarModalOrden()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="guardar"
+                (click)="guardarOrden()">
+
+                Crear Orden
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

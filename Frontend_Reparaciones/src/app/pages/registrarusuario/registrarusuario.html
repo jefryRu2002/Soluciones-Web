@@ -1,0 +1,103 @@
+<div class="contenedor">
+  <div class="login-box">
+
+    <a class="back-btn" href="/login">
+    ← Regresar
+    </a>
+
+    <h2 class="titulo">Registrar Usuario</h2>
+    <p class="subtitulo">Completa tus datos para crear una cuenta</p>
+
+    <form (ngSubmit)="registrarUsuario()">
+      
+      <div class="input-group">
+        <label for="dni">DNI</label>
+        <div class="dni-search-container">
+          <input 
+            id="dni"
+            type="text" 
+            placeholder="Ingrese DNI" 
+            [(ngModel)]="dni" 
+            name="dni" 
+            maxlength="8"
+            required>
+          <button type="button" class="btn-buscar-reniec" (click)="buscarDniReniec()">
+            🔍 Buscar
+          </button>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <label for="nombreApellido">Nombre y Apellido</label>
+        <input 
+          id="nombreApellido"
+          type="text" 
+          placeholder="Datos desde RENIEC" 
+          [(ngModel)]="nombreApellido" 
+          name="nombreApellido" 
+          readonly
+          required>
+      </div>
+
+      <div class="input-group">
+        <label for="correo">Correo Electrónico</label>
+        <input 
+          id="correo"
+          type="email" 
+          placeholder="ejemplo@correo.com" 
+          [(ngModel)]="correo" 
+          name="correo" 
+          required>
+      </div>
+
+      <div class="input-group">
+        <label for="telefono">Número de Teléfono</label>
+        <input 
+          id="telefono"
+          type="tel" 
+          placeholder="Ej. 987654321" 
+          [(ngModel)]="telefono" 
+          name="telefono" 
+          required>
+      </div>
+
+      <div class="input-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input 
+          id="fechaNacimiento"
+          type="date" 
+          [(ngModel)]="fechaNacimiento" 
+          name="fechaNacimiento" 
+          required>
+      </div>
+      
+      <div class="input-group">
+        <label for="contrasena">Contraseña</label>
+        <input 
+          id="contrasena"
+          type="password" 
+          placeholder="Cree una contraseña" 
+          [(ngModel)]="contrasena" 
+          name="contrasena" 
+          required>
+      </div>
+
+      <div class="input-group">
+        <label for="confirmarContrasena">Confirmar Contraseña</label>
+        <input 
+          id="confirmarContrasena"
+          type="password" 
+          placeholder="Repita la contraseña" 
+          [(ngModel)]="confirmarContrasena" 
+          name="confirmarContrasena" 
+          required>
+      </div>
+
+      <button type="submit" class="btn-login">
+        Registrar Cuenta
+      </button>
+
+    </form>
+
+  </div>
+</div>

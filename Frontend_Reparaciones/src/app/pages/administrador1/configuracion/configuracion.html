@@ -1,0 +1,97 @@
+<!-- configuracion.html -->
+<div class="config-page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>⚙️ Configuración</h1>
+      <p>Gestión de usuarios y credenciales del sistema</p>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <div class="config-nav">
+   
+    <button [class.activo]="vistaActual === 'perfil'" (click)="vistaActual = 'perfil'">
+      👤 Mi perfil
+    </button>
+  </div>
+
+ 
+
+  <!-- ── MI PERFIL ── -->
+  @if (vistaActual === 'perfil') {
+
+    <div class="form-card">
+
+      <div class="form-card-header">
+        <h2>👤 Mi perfil</h2>
+        <p>Actualiza tu información y contraseña de acceso</p>
+      </div>
+
+      @if (errorPerfil) {
+        <div class="alerta-error">⚠️ {{ errorPerfil }}</div>
+      }
+
+      @if (perfilGuardado) {
+        <div class="alerta-exito">✅ Perfil actualizado correctamente</div>
+      }
+
+      <div class="form-grid">
+
+        <div class="form-grupo">
+          <label>Nombre *</label>
+          <input
+            type="text"
+            [(ngModel)]="perfilAdmin.nombre">
+        </div>
+
+        <div class="form-grupo">
+          <label>Correo electrónico *</label>
+          <input
+            type="email"
+            [(ngModel)]="perfilAdmin.correo">
+        </div>
+
+      </div>
+
+      <div class="separador">
+        <span>Cambiar contraseña (opcional)</span>
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-grupo full">
+          <label>Contraseña actual</label>
+          <input
+            type="password"
+            placeholder="Ingresa tu contraseña actual"
+            [(ngModel)]="perfilAdmin.passwordActual">
+        </div>
+
+        <div class="form-grupo">
+          <label>Nueva contraseña</label>
+          <input
+            type="password"
+            placeholder="Mínimo 6 caracteres"
+            [(ngModel)]="perfilAdmin.passwordNueva">
+        </div>
+
+        <div class="form-grupo">
+          <label>Confirmar nueva contraseña</label>
+          <input
+            type="password"
+            placeholder="Repite la nueva contraseña"
+            [(ngModel)]="perfilAdmin.confirmarNueva">
+        </div>
+
+      </div>
+
+      <button class="btn-nuevo" (click)="guardarPerfil()">
+        💾 Guardar cambios
+      </button>
+
+    </div>
+  }
+
+</div>

@@ -1,0 +1,36 @@
+/* reparaciones.css */
+.rep-page { width: 100%; padding: 24px; background: #f8fafc; min-height: 100vh; }
+.header { padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; margin-bottom: 24px; }
+.header h1 { font-size: 20px; font-weight: 700; color: #0f172a; }
+.header p  { font-size: 13px; color: #64748b; margin-top: 4px; }
+
+.reparaciones-lista { display: flex; flex-direction: column; gap: 16px; }
+.rep-card { background: white; border-radius: 14px; border: 0.5px solid #e5e7eb; padding: 24px; }
+.rep-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.rep-info { display: flex; align-items: center; gap: 12px; }
+.rep-info strong { display: block; font-size: 15px; color: #0f172a; }
+.rep-info p { font-size: 12px; color: #64748b; }
+.rep-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.rep-meta small { font-size: 12px; color: #94a3b8; }
+
+.ticket-badge { background: #f1f5f9; color: #475569; font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 6px; font-family: monospace; white-space: nowrap; }
+.estado { display: inline-flex; align-items: center; gap: 5px; padding: 5px 11px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+.estado::before { content: ''; width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.proceso  { background: #dbeafe; color: #1e40af; } .proceso::before  { background: #2563eb; }
+.morado   { background: #ede9fe; color: #5b21b6; } .morado::before   { background: #7c3aed; }
+.terminado{ background: #d1fae5; color: #065f46; } .terminado::before{ background: #10b981; }
+
+.pipeline-mini { display: flex; align-items: center; gap: 0; overflow-x: auto; margin-bottom: 20px; padding-bottom: 4px; }
+.paso-mini { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; min-width: 90px; position: relative; }
+.paso-mini:not(:last-child)::after { content: ''; position: absolute; top: 7px; left: 50%; width: 100%; height: 2px; background: #e2e8f0; z-index: 0; }
+.paso-mini.completado::after { background: #10b981; }
+.punto { width: 16px; height: 16px; border-radius: 50%; background: #e2e8f0; z-index: 1; transition: all .2s; }
+.paso-mini span { font-size: 10px; color: #94a3b8; text-align: center; }
+.paso-mini.activo .punto    { background: #2563eb; box-shadow: 0 0 0 3px #dbeafe; }
+.paso-mini.activo span      { color: #2563eb; font-weight: 700; }
+.paso-mini.completado .punto{ background: #10b981; }
+.paso-mini.completado span  { color: #10b981; }
+
+.btn-avanzar { background: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .15s; }
+.btn-avanzar:hover { background: #dbeafe; }
+.listo-badge { background: #d1fae5; color: #065f46; padding: 10px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; text-align: center; }

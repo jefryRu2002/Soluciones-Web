@@ -1,0 +1,168 @@
+<div class="tickets-container">
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <div class="titulo">
+            🎫 <h2>TICKETS</h2>
+        </div>
+
+        <div class="usuario">
+            Administrador 👤
+        </div>
+
+    </div>
+
+    <div class="contenido">
+
+        <!-- PANEL IZQUIERDO -->
+        <div class="historial">
+
+            <h3>Historial de Tickets</h3>
+
+            <div class="acciones">
+
+                <button class="btn-nuevo" (click)="abrirModal()">
+                    + Nuevo Ticket
+                </button>
+
+                <input
+                    type="text"
+                    placeholder="Buscar ticket, cliente o equipo..."
+                >
+
+                <select>
+                    <option>Estado: Todos</option>
+                    <option>Pendiente</option>
+                    <option>En revisión</option>
+                    <option>En proceso</option>
+                    <option>Finalizado</option>
+                </select>
+
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID Ticket</th>
+                        <th>Cliente</th>
+                        <th>Fecha Creación</th>
+                        <th>Estado</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let ticket of tickets">
+
+                        <td>{{ticket.id}}</td>
+                        <td>{{ticket.cliente}}</td>
+                        <td>{{ticket.fecha}}</td>
+
+                        <td>
+                            <span
+                                class="estado"
+                                [ngClass]="ticket.estado.toLowerCase().replace(' ','-')">
+                                {{ticket.estado}}
+                            </span>
+                        </td>
+
+                        <td>{{ticket.descripcion}}</td>
+
+                        <td class="acciones-tabla">
+
+                            <button class="btn-orden">
+                                Crear Orden
+                            </button>
+
+                            <button class="btn-menu">
+                                ⋮
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- MODAL LATERAL -->
+        <div
+            class="modal-lateral"
+            *ngIf="mostrarModal">
+
+            <div class="modal-header">
+
+                <h3>Crear Nuevo Ticket</h3>
+
+                <button (click)="cerrarModal()">
+                    ✕
+                </button>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Cliente *</label>
+
+                <select>
+                    <option>Seleccione un cliente</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Descripción del problema *</label>
+
+                <textarea rows="4"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Equipo (opcional)</label>
+
+                <select>
+                    <option>Seleccione un equipo</option>
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Estado *</label>
+
+                <select>
+                    <option>Pendiente</option>
+                </select>
+
+            </div>
+
+            <div class="botones">
+
+                <button
+                    class="cancelar"
+                    (click)="cerrarModal()">
+                    Cancelar
+                </button>
+
+                <button
+                    class="guardar"
+                    (click)="guardarTicket()">
+                    Guardar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

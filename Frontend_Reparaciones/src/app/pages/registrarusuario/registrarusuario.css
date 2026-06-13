@@ -1,0 +1,67 @@
+/* Reutilizar estilos compartidos importando los de login (o asegurando su consistencia) */
+@import '../login/login.css';
+
+/* Ajuste específico para que la caja crezca si hay muchos campos, pero mantenga el ancho */
+.login-box {
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Contenedor especial para DNI y su botón de buscar */
+.dni-search-container {
+  display: flex;
+  gap: 10px; /* Separación entre el input y el botón */
+  width: 100%;
+}
+
+.dni-search-container input {
+  flex: 1; /* El input toma todo el espacio restante */
+}
+
+/* Estilo del botón "Buscar" de RENIEC */
+.btn-buscar-reniec {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0 15px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.btn-buscar-reniec:hover {
+  background-color: #e0e0e0;
+}
+
+/* Asegurar que los inputs de tipo date tengan el mismo aspecto que los de texto */
+input[type="date"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Botón superior de regresar */
+.back-btn {
+  background: none;
+  border: none;
+  color: #007bff; /* Cambiar por tu color de marca */
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+/* Aseguramos separación del botón final */
+.btn-login {
+  margin-top: 15px;
+}

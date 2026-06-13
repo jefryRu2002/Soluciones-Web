@@ -1,0 +1,378 @@
+/* PÁGINA */
+
+.pagos-page {
+    width: 100%;
+    padding: 24px;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.header p {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+/* RESUMEN */
+
+.resumen-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 0.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.resumen-card strong {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* LISTA DE PAGOS */
+
+.pagos-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.pago-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 0.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.pago-item:hover {
+    background: #f1f5f9;
+    transform: translateX(4px);
+}
+
+.pago-item.pagado {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.pago-item.pagado:hover {
+    background: white;
+    transform: none;
+}
+
+.pago-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.pago-info p {
+    font-size: 14px;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.pago-derecha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.pago-derecha strong {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+/* TICKET BADGE */
+
+.ticket-badge {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+
+/* ESTADOS */
+
+.estado {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.estado::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.pendiente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.pendiente::before {
+    background: #f59e0b;
+}
+
+.terminado {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.terminado::before {
+    background: #10b981;
+}
+
+/* MODAL OVERLAY */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    width: 100%;
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.btn-cerrar {
+    background: #f1f5f9;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #64748b;
+    transition: background 0.15s;
+}
+
+.btn-cerrar:hover {
+    background: #e2e8f0;
+}
+
+.monto-modal {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0f172a;
+    text-align: center;
+}
+
+/* MÉTODOS DE PAGO */
+
+.metodos {
+    display: flex;
+    gap: 8px;
+}
+
+.metodos button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.metodos button.activo {
+    background: #eff6ff;
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+/* FORMULARIO DE PAGO */
+
+.form-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-pago input,
+.form-pago select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #1e293b;
+    outline: none;
+    transition: border 0.15s;
+}
+
+.form-pago input:focus,
+.form-pago select:focus {
+    border-color: #2563eb;
+}
+
+.fila-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* BILLETERAS */
+
+.billeteras {
+    display: flex;
+    gap: 8px;
+}
+
+.billeteras button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.billeteras button.activo {
+    background: #eff6ff;
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+/* BOTÓN PAGAR */
+
+.btn-pagar {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.btn-pagar:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-pagar:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+}
+
+/* ALERTA ÉXITO */
+
+.alerta-exito {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 1001;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .pagos-page {
+        padding: 16px;
+    }
+
+    .metodos {
+        flex-direction: column;
+    }
+
+    .modal {
+        margin: 16px;
+        padding: 20px;
+    }
+
+    .fila-2 {
+        grid-template-columns: 1fr;
+    }
+}

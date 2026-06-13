@@ -1,0 +1,36 @@
+<!-- notificaciones.html -->
+<div class="notif-page">
+
+  <div class="header">
+    <div>
+      <h1>🔔 Notificaciones</h1>
+      <p>Actualizaciones de tus solicitudes de reparación</p>
+    </div>
+    @if (noLeidas() > 0) {
+      <button class="btn-leer-todo" (click)="marcarTodasLeidas()">
+        Marcar todas como leídas ({{ noLeidas() }})
+      </button>
+    }
+  </div>
+
+  @if (notificaciones().length === 0) {
+    <div class="empty">No tienes notificaciones</div>
+  }
+
+  <div class="notif-lista">
+    @for (n of notificaciones(); track n.id) {
+      <div class="notif-item" [class.no-leida]="!n.leida" (click)="marcarLeida(n.id)">
+        <div class="notif-icono">{{ iconoTipo(n.tipo) }}</div>
+        <div class="notif-body">
+          <div class="notif-titulo">
+            {{ n.titulo }}
+            @if (!n.leida) { <span class="badge-nueva">Nueva</span> }
+          </div>
+          <p class="notif-mensaje">{{ n.mensaje }}</p>
+          <span class="notif-fecha">{{ n.fecha }}</span>
+        </div>
+      </div>
+    }
+  </div>
+
+</div>

@@ -1,0 +1,237 @@
+<div class="orden-container">
+
+    <div class="header">
+
+        <div class="titulo">
+            📋
+            <h2>ÓRDENES DE TRABAJO</h2>
+        </div>
+
+    </div>
+
+    <div class="contenido">
+
+        <!-- TABLA -->
+
+        <div class="tabla-card">
+
+            <h3>Listado de Órdenes de Trabajo</h3>
+
+            <div class="toolbar">
+
+                <div class="filtros">
+
+                    <input
+                        type="text"
+                        placeholder="Buscar orden, ticket, cliente o técnico..."
+                    >
+
+                    <select [(ngModel)]="estadoFiltro">
+                        <option value="Todos">Todos</option>
+<option value="Pendiente">Pendiente</option>
+<option value="En revisión">En revisión</option>
+<option value="En proceso">En proceso</option>
+<option value="Finalizado">Finalizado</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>ID Orden</th>
+                        <th>Ticket</th>
+                        <th>Cliente</th>
+                        <th>Equipo</th>
+                        <th>Problema</th>
+                        <th>Técnico</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let orden of ordenesFiltradas">
+
+                        <td class="codigo">{{orden.id}}</td>
+                        <td>{{orden.ticket}}</td>
+                        <td>{{orden.cliente}}</td>
+                        <td>{{orden.equipo}}</td>
+                        <td>{{orden.problema}}</td>
+                        <td>{{orden.tecnico}}</td>
+                        <td>{{orden.fecha}}</td>
+
+                        <td>
+
+                            <span
+                                class="estado"
+                                [ngClass]="orden.estado.toLowerCase().replace(' ','-')">
+
+                                {{orden.estado}}
+
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="acciones">
+
+                                <button
+    class="btn-editar"
+    (click)="abrirModalEditar(orden)">
+    ✏️
+</button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div class="footer">
+                Mostrando 1 a 4 de 4 órdenes
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL EDITAR ORDEN -->
+
+<div
+    class="modal-overlay"
+    *ngIf="mostrarModalEditar">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <h3>Editar Orden de Trabajo</h3>
+
+            <button
+                class="btn-close"
+                (click)="cerrarModalEditar()">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>ID Orden</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.id">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Ticket</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.ticket">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Cliente</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.cliente">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Equipo</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.equipo">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Problema</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.problema">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Técnico</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.tecnico">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Fecha Ingreso</label>
+
+            <input
+                type="text"
+                [(ngModel)]="ordenSeleccionada.fecha">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Estado</label>
+
+            <select
+                [(ngModel)]="ordenSeleccionada.estado">
+
+                <option>Pendiente</option>
+                <option>En revisión</option>
+                <option>En proceso</option>
+                <option>Finalizado</option>
+
+            </select>
+
+        </div>
+
+        <div class="botones">
+
+            <button
+                class="cancelar"
+                (click)="cerrarModalEditar()">
+
+                Cancelar
+
+            </button>
+
+            <button
+                class="guardar"
+                (click)="guardarCambios()">
+
+                Guardar Cambios
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

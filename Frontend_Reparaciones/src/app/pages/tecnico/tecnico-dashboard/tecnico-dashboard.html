@@ -1,0 +1,62 @@
+<!-- tecnico-dashboard.html -->
+<div class="dashboard-page">
+
+  <div class="header">
+    <div>
+      <h1>🔧 Bienvenido, {{ nombreTecnico }}</h1>
+      <p>Panel de control de tus órdenes de trabajo</p>
+    </div>
+  </div>
+
+  <div class="stats-cards">
+    @for (item of resumen; track item.label) {
+      <div class="stat-card" [class]="item.color">
+        <div class="icono">{{ item.icono }}</div>
+        <div class="info">
+          <div class="value">{{ item.value }}</div>
+          <div class="label">{{ item.label }}</div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="accesos-rapidos">
+    <a routerLink="../ordenes" class="acceso-card">
+      <span>📋</span><p>Órdenes asignadas</p>
+    </a>
+    <a routerLink="../evaluaciones" class="acceso-card">
+      <span>🔍</span><p>Evaluaciones</p>
+    </a>
+    <a routerLink="../reparaciones" class="acceso-card">
+      <span>🔧</span><p>Reparaciones en curso</p>
+    </a>
+    <a routerLink="../pruebas" class="acceso-card">
+      <span>🧪</span><p>Pruebas de funcionamiento</p>
+    </a>
+  </div>
+
+  <div class="tabla-container">
+    <div class="tabla-header"><h2>Órdenes recientes</h2></div>
+    <table>
+      <thead>
+        <tr>
+          <th>Ticket</th><th>Equipo</th><th>Cliente</th><th>Estado</th><th>Plazo</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (o of ordenesRecientes; track o.ticket) {
+          <tr>
+            <td><span class="ticket-badge">{{ o.ticket }}</span></td>
+            <td>{{ o.equipo }}</td>
+            <td>{{ o.cliente }}</td>
+            <td>
+              <span class="estado proceso">{{ o.estado }}</span>
+            </td>
+            <td>{{ o.plazo }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

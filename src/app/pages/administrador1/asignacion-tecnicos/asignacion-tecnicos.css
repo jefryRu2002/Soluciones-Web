@@ -1,0 +1,145 @@
+.asignacion-page{
+    padding:30px;
+}
+
+/* HEADER */
+
+.header{
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:38px;
+    color:#111827;
+}
+
+.header p{
+    color:#6b7280;
+    margin-top:5px;
+}
+
+/* GRID */
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+}
+
+/* CARD */
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:25px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,0.08);
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+/* TOP */
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.card-top h2{
+    color:#111827;
+}
+
+/* PRIORIDADES */
+
+.prioridad{
+    padding:8px 15px;
+    border-radius:30px;
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.alta{
+    background:#ef4444;
+}
+
+.media{
+    background:#f59e0b;
+}
+
+.baja{
+    background:#10b981;
+}
+
+/* INFO */
+
+.info p{
+    margin-bottom:12px;
+    color:#374151;
+}
+
+.estado{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+/* SELECT */
+
+.select-container{
+    margin-top:20px;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #d1d5db;
+    font-size:15px;
+}
+
+/* BUTTON */
+
+.btn-asignar{
+    width:100%;
+    margin-top:20px;
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.btn-asignar:hover{
+    background:#1d4ed8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .asignacion-page{
+        padding:20px;
+    }
+
+}

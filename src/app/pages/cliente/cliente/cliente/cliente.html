@@ -1,0 +1,67 @@
+<!-- cliente.html -->
+<div class="perfil-page">
+
+  <div class="header">
+    <div>
+      <h1>👤 Mi perfil</h1>
+      <p>Visualiza y actualiza tu información personal</p>
+    </div>
+  </div>
+
+  @if (guardado) {
+    <div class="alerta-exito">✅ Perfil actualizado correctamente</div>
+  }
+  @if (error) {
+    <div class="alerta-error">⚠️ {{ error }}</div>
+  }
+
+  <div class="perfil-card">
+
+    <div class="avatar">
+      <span>{{ perfil.nombre[0] }}</span>
+    </div>
+
+    <div class="form-grid">
+
+      <div class="form-grupo">
+        <label>Nombre completo</label>
+        <input type="text" [value]="perfil.nombre" disabled>
+      </div>
+
+      <div class="form-grupo">
+        <label>DNI</label>
+        <input type="text" [value]="perfil.dni" disabled>
+      </div>
+
+      <div class="form-grupo">
+        <label>Teléfono *</label>
+        <input
+          type="tel"
+          [(ngModel)]="perfil.telefono"
+          [disabled]="!editando"
+          placeholder="987654321">
+      </div>
+
+      <div class="form-grupo">
+        <label>Correo electrónico *</label>
+        <input
+          type="email"
+          [(ngModel)]="perfil.correo"
+          [disabled]="!editando"
+          placeholder="correo@mail.com">
+      </div>
+
+    </div>
+
+    <div class="acciones-perfil">
+      @if (!editando) {
+        <button class="btn-editar-perfil" (click)="editando = true">✏️ Editar perfil</button>
+      } @else {
+        <button class="btn-guardar" (click)="guardar()">💾 Guardar cambios</button>
+        <button class="btn-cancelar" (click)="cancelar()">Cancelar</button>
+      }
+    </div>
+
+  </div>
+
+</div>

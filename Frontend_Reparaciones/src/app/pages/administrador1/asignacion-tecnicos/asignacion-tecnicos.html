@@ -1,0 +1,116 @@
+<div class="asignacion-page">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div>
+
+            <h1>
+                🛠️ Asignación de Técnicos
+            </h1>
+
+            <p>
+                Gestión de asignaciones de reparación
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- GRID -->
+
+    <div class="cards-grid">
+
+        <div
+            class="card"
+            *ngFor="let solicitud of solicitudes">
+
+            <!-- TOP -->
+
+            <div class="card-top">
+
+                <h2>
+                    {{ solicitud.ticket }}
+                </h2>
+
+                <span
+                    class="prioridad"
+                    [ngClass]="{
+                        'alta': solicitud.prioridad === 'Alta',
+                        'media': solicitud.prioridad === 'Media',
+                        'baja': solicitud.prioridad === 'Baja'
+                    }">
+
+                    {{ solicitud.prioridad }}
+
+                </span>
+
+            </div>
+
+            <!-- INFO -->
+
+            <div class="info">
+
+                <p>
+                    👤 Cliente:
+                    <strong>
+                        {{ solicitud.cliente }}
+                    </strong>
+                </p>
+
+                <p>
+                    💻 Equipo:
+                    <strong>
+                        {{ solicitud.equipo }}
+                    </strong>
+                </p>
+
+                <p>
+                    📌 Estado:
+                    <span class="estado">
+
+                        {{ solicitud.estado }}
+
+                    </span>
+                </p>
+
+            </div>
+
+            <!-- SELECT -->
+
+            <div class="select-container">
+
+                <select [(ngModel)]="solicitud.tecnico">
+
+                    <option value="">
+                        Seleccionar técnico
+                    </option>
+
+                    <option
+                        *ngFor="let tecnico of tecnicos"
+                        [value]="tecnico">
+
+                        {{ tecnico }}
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- BUTTON -->
+
+            <button
+                class="btn-asignar"
+                (click)="asignarTecnico(solicitud)">
+
+                ✅ Asignar Técnico
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

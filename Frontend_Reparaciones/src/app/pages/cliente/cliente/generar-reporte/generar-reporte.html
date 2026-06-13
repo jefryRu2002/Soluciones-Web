@@ -1,0 +1,92 @@
+<div class="reporte-page">
+
+  <div class="header">
+    <div>
+      <h1>📝 Generar reporte de falla</h1>
+      <p>Completa el formulario para registrar tu solicitud de reparación</p>
+    </div>
+  </div>
+
+  @if (enviado) {
+    <div class="exito-card">
+      <div class="exito-icono">✅</div>
+      <h2>¡Reporte registrado exitosamente!</h2>
+      <p>Tu código de operación es:</p>
+      <div class="codigo">{{ codigoOperacion }}</div>
+      <p class="sub">Guarda este código para hacer seguimiento de tu solicitud.</p>
+      <button class="btn-nuevo" (click)="nuevoReporte()">+ Nuevo reporte</button>
+    </div>
+  }
+
+  @if (!enviado) {
+
+    @if (error) {
+      <div class="alerta-error">⚠️ {{ error }}</div>
+    }
+
+    <div class="form-card">
+
+      <div class="form-grid">
+        
+        <div class="form-grupo">
+          <label>Marca *</label>
+          <select [(ngModel)]="marcaSeleccionada" (change)="onMarcaChange()" class="form-select">
+            <option value="" disabled selected>Selecciona una marca</option>
+            <option value="HP">HP</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="Asus">Asus</option>
+            <option value="Acer">Acer</option>
+            <option value="Otras">Otras</option>
+          </select>
+        </div>
+
+        @if (marcaSeleccionada === 'Otras') {
+          <div class="form-grupo">
+            <label>Especifique otra marca *</label>
+            <input 
+              type="text" 
+              placeholder="¿Qué marca es?" 
+              [(ngModel)]="otraMarca"
+              (input)="actualizarMarcaReporte()">
+          </div>
+        }
+
+        <div class="form-grupo">
+          <label>Nombre del equipo *</label>
+          <input type="text" placeholder="Ej: Laptop" [(ngModel)]="reporte.nombreEquipo">
+        </div>
+
+        <div class="form-grupo">
+          <label>Modelo *</label>
+          <input type="text" placeholder="Ej: Pavilion 15" [(ngModel)]="reporte.modelo">
+        </div>
+
+        <div class="form-grupo">
+          <label>N° de serie *</label>
+          <input type="text" placeholder="Ej: SN123456" [(ngModel)]="reporte.serie">
+        </div>
+
+        <div class="form-grupo full">
+          <label>Descripción de la falla *</label>
+          <textarea
+            rows="4"
+            placeholder="Describe detalladamente el problema del equipo..."
+            [(ngModel)]="reporte.descripcionFalla">
+          </textarea>
+        </div>
+
+        <div class="form-grupo full">
+          <label>Recibido por *</label>
+          <input type="text" placeholder="Nombre de quien recibe" [(ngModel)]="reporte.recibidoPor">
+        </div>
+
+      </div>
+
+      <button class="btn-enviar" (click)="enviarReporte()">
+        📤 Enviar reporte
+      </button>
+
+    </div>
+  }
+
+</div>

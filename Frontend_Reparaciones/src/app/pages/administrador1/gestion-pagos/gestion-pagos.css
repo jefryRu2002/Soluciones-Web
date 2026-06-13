@@ -1,0 +1,116 @@
+/* Contenedor Principal */
+.contenedor-pagos {
+    padding: 30px;
+    background: #f5f7fb; /* Fondo gris claro unificado */
+    min-height: calc(100vh - 80px);
+}
+
+/* Título de la sección */
+.titulo-seccion {
+    color: #0a0f1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+/* Tarjeta contenedora de la Tabla */
+.tabla-responsiva {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden; /* Mantiene las esquinas redondeadas */
+    border: 1px solid #e2e8f0;
+}
+
+/* Tabla Base */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    text-align: left;
+}
+
+/* Encabezados */
+th {
+    background: #0a0f1a; /* Fondo oscuro idéntico a tus sidebars */
+    color: #ffffff;
+    padding: 16px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Celdas */
+td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+/* Fila interactiva al pasar el mouse */
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Badges / Estados de Pago */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.badge-pagado {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.badge-pendiente {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.badge-rechazado {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Botones de Acción */
+.acciones-flex {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-accion {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-aprobar {
+    background-color: #3b82f6; /* Azul primario */
+    color: white;
+}
+
+.btn-aprobar:hover {
+    background-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.btn-ver {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.btn-ver:hover {
+    background-color: #e2e8f0;
+}

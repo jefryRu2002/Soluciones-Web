@@ -1,0 +1,67 @@
+<!-- pruebas-funcionamiento.html -->
+<div class="pruebas-page">
+
+  <div class="header">
+    <div>
+      <h1>🧪 Pruebas de funcionamiento</h1>
+      <p>Verifica que el equipo funcione correctamente antes de la entrega</p>
+    </div>
+  </div>
+
+  @if (guardado) { <div class="alerta-exito">✅ Pruebas registradas correctamente</div> }
+  @if (error)    { <div class="alerta-error">⚠️ {{ error }}</div> }
+
+  <div class="form-card">
+
+    <div class="form-grupo">
+      <label>Ticket de orden *</label>
+      <select [(ngModel)]="ticketSeleccionado">
+        <option value="">Selecciona un ticket</option>
+        @for (t of tickets; track t) {
+          <option [value]="t">{{ t }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="pruebas-lista">
+      @for (prueba of pruebas(); track prueba.id) {
+        <div class="prueba-item">
+          <span class="prueba-nombre">{{ prueba.nombre }}</span>
+          <div class="prueba-botones">
+            <button
+              class="btn-resultado ok"
+              [class.activo]="prueba.resultado === 'ok'"
+              (click)="setResultado(prueba.id, 'ok')">
+              ✅ OK
+            </button>
+            <button
+              class="btn-resultado falla"
+              [class.activo]="prueba.resultado === 'falla'"
+              (click)="setResultado(prueba.id, 'falla')">
+              ❌ Falla
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (todasCompletadas) {
+      <div class="resumen-pruebas" [class.con-fallas]="hayFallas">
+        @if (hayFallas) {
+          ⚠️ Se detectaron fallas. El equipo requiere revisión adicional.
+        } @else {
+          ✅ Todas las pruebas pasaron. El equipo está listo para entrega.
+        }
+      </div>
+    }
+
+    <div class="form-grupo">
+      <label>Observaciones adicionales</label>
+      <textarea rows="3" placeholder="Anota cualquier detalle relevante..." [(ngModel)]="observaciones"></textarea>
+    </div>
+
+    <button class="btn-guardar" (click)="guardar()">💾 Guardar pruebas</button>
+
+  </div>
+
+</div>

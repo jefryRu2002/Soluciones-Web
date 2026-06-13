@@ -1,0 +1,168 @@
+<div class="tickets-container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="titulo">
+      📋 <h2>ÓRDENES ASIGNADAS</h2>
+    </div>
+    <div class="usuario">Tecnico 👤</div>
+  </div>
+
+  <div class="contenido">
+
+    <!-- PANEL IZQUIERDO -->
+    <div class="historial">
+
+      <h3>Listado de Órdenes</h3>
+
+      <div class="acciones">
+        <input type="text" placeholder="Buscar ticket, cliente o equipo...">
+        <select>
+          <option>Estado: Todos</option>
+          <option>Pendiente</option>
+          <option>Recepcionada</option>
+        </select>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Ticket</th>
+              <th>Cliente</th>
+              <th>Equipo</th>
+              <th>Modelo</th>
+              <th>Fecha Ingreso</th>
+              <th>Plazo</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let o of ordenes()">
+              <td>{{ o.ticket }}</td>
+              <td>{{ o.cliente }}</td>
+              <td>{{ o.equipo }}</td>
+              <td>{{ o.modelo }}</td>
+              <td>{{ o.fechaIngreso }}</td>
+              <td>{{ o.plazo }}</td>
+              <td>
+                <span class="estado" [ngClass]="o.recepcionada ? 'terminado' : 'pendiente'">
+                  {{ o.recepcionada ? 'Recepcionada' : 'Pendiente' }}
+                </span>
+              </td>
+              <td>
+                <div class="acciones-tabla">
+                  <button class="btn-detalle" (click)="ordenDetalle = o">Ver Detalle</button>
+                  <button *ngIf="!o.recepcionada" class="btn-recepcionar" (click)="recepcionar(o.ticket)">
+                    Recepcionar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: FUERA de .contenido para el overlay correcto -->
+  <ng-container *ngIf="ordenDetalle">
+
+    <!-- Fondo oscuro -->
+    <div class="modal-backdrop" (click)="ordenDetalle = null"></div>
+
+    <!-- Ventana flotante -->
+    <div class="modal-lateral">
+
+      <div class="modal-header">
+        <h3>Detalle de Orden</h3>
+        <button class="btn-cerrar" (click)="ordenDetalle = null">✕</button>
+      </div>
+
+      <div class="modal-content">
+
+        <!-- Sección: Datos del cliente -->
+        <div class="section-header">
+          <span class="section-icon">👤</span>
+          <span class="section-title">Datos del Cliente</span>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-label">Cliente</span>
+            <span class="info-value">{{ ordenDetalle.cliente }}</span>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Ticket</span>
+            <span class="info-value">{{ ordenDetalle.ticket }}</span>
+          </div>
+        </div>
+
+        <!-- Sección: Datos del equipo -->
+        <div class="section-header">
+          <span class="section-icon">🖥️</span>
+          <span class="section-title">Datos del Equipo</span>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-label">Equipo</span>
+            <span class="info-value">{{ ordenDetalle.equipo }}</span>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Modelo</span>
+            <span class="info-value">{{ ordenDetalle.modelo }}</span>
+          </div>
+          <div class="info-card">
+            <span class="info-label">N° Serie</span>
+            <span class="info-value">{{ ordenDetalle.serie }}</span>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Estado</span>
+            <span class="info-value">
+              <span class="estado" [ngClass]="ordenDetalle.recepcionada ? 'terminado' : 'pendiente'">
+                {{ ordenDetalle.recepcionada ? 'Recepcionada' : 'Pendiente' }}
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Sección: Fechas -->
+        <div class="section-header">
+          <span class="section-icon">📅</span>
+          <span class="section-title">Fechas</span>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-label">Fecha Ingreso</span>
+            <span class="info-value">{{ ordenDetalle.fechaIngreso }}</span>
+          </div>
+          <div class="info-card">
+            <span class="info-label">Plazo</span>
+            <span class="info-value">{{ ordenDetalle.plazo }}</span>
+          </div>
+        </div>
+
+        <!-- Sección: Descripción -->
+        <div class="section-header">
+          <span class="section-icon">📝</span>
+          <span class="section-title">Descripción de Falla</span>
+        </div>
+
+        <div class="description-full">
+          <div class="description-box">
+            <textarea rows="4" readonly>{{ ordenDetalle.descripcion }}</textarea>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </div>
+
+  </ng-container>
+
+</div>

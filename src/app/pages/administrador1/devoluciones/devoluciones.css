@@ -1,0 +1,139 @@
+.contenedor-devoluciones {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+.encabezado-seccion {
+    margin-bottom: 24px;
+}
+
+.titulo-seccion {
+    color: #0a0f1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.subtitulo {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Tabla base */
+.tabla-responsiva {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th {
+    background: #0a0f1a; /* Tu color de Administrador */
+    color: #ffffff;
+    padding: 16px 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Detalles */
+.cliente-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.cliente-info small {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.equipo-tag {
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Caja de informe crítico */
+.motivo-box {
+    background: #fff5f5;
+    border-left: 4px solid #ef4444;
+    padding: 10px 12px;
+    border-radius: 0 8px 8px 0;
+    color: #991b1b;
+    font-size: 0.85rem;
+    max-width: 300px;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.badge-pendiente {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+
+.badge-notificado {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+/* Botones y acciones */
+.acciones-flex {
+    display: flex;
+    align-items: center;
+}
+
+.btn-accion {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-avisar {
+    background-color: #3b82f6; /* Tu azul de botones */
+    color: white;
+}
+
+.btn-avisar:hover {
+    background-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.check-listo {
+    color: #16a34a;
+    font-weight: 600;
+    font-size: 0.85rem;
+}

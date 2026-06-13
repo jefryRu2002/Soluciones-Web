@@ -1,0 +1,119 @@
+.tecnico-layout {
+    display: flex;
+    height: 100vh;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: #1e293b;
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo h2 {
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.logo p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    margin: 4px 0 0 0;
+}
+
+/* Estilos del Perfil */
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    background-color: #334155;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.user-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid #3b82f6;
+}
+
+.user-info span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.user-info p {
+    margin: 4px 0 0 0;
+    font-size: 0.8rem;
+    color: #cbd5e1;
+}
+
+/* Menú de Navegación */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1; /* Empuja el footer hacia abajo */
+}
+
+.nav-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.nav-menu a:hover, 
+.nav-menu a.active {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+/* Botón de Logout */
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 15px;
+}
+
+.btn-logout {
+    width: 100%;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 11px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #dc2626;
+}
+
+/* Contenido Principal */
+.main-content {
+    flex-grow: 1;
+    background-color: #f1f5f9;
+    padding: 25px;
+    overflow-y: auto;
+}

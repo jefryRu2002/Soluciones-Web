@@ -1,0 +1,146 @@
+.contenedor-notificaciones {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+.encabezado-notificaciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 16px;
+}
+
+.titulo-seccion {
+    color: #0a0f1a;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.subtitulo {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.btn-marcar-todo {
+    background: transparent;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-marcar-todo:hover {
+    background: #0a0f1a;
+    color: white;
+    border-color: #0a0f1a;
+}
+
+/* Contenedor de lista */
+.lista-notificaciones {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 900px;
+}
+
+/* Tarjeta base */
+.notificacion-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
+}
+
+/* Resalte para estados no leídos */
+.notificacion-card.not-leida,
+.notificacion-card.no-leida {
+    border-left: 4px solid #3b82f6; /* Línea de acento azul */
+    background: #f8fafc;
+}
+
+/* Estilos de los iconos laterales */
+.notificacion-icono {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.icono-tecnico { background: #fee2e2; }
+.icono-pago { background: #dcfce7; }
+.icono-ticket { background: #e0f2fe; }
+.icono-usuario { background: #f1f5f9; }
+
+/* Contenido del mensaje */
+.notificacion-contenido {
+    flex: 1;
+}
+
+.notificacion-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.categoria-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.5px;
+}
+
+.tiempo {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.noti-titulo {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0a0f1a;
+    margin-bottom: 4px;
+}
+
+.noti-descripcion {
+    font-size: 0.88rem;
+    color: #475569;
+    line-height: 1.4;
+}
+
+/* Botón indicador circular */
+.notificacion-accion {
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+.btn-leer {
+    background: transparent;
+    border: none;
+    color: #3b82f6;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.2s;
+}
+
+.btn-leer:hover {
+    transform: scale(1.3);
+}

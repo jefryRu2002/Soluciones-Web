@@ -1,0 +1,66 @@
+<div class="estadisticas-page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>📈 Estadísticas del sistema</h1>
+      <p>Panel general de rendimiento y ganancias</p>
+    </div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="stats-cards">
+
+    <div class="mini-stat">
+      <h3>💻 Reparaciones</h3>
+      <h1>245</h1>
+      <span>+18% este mes</span>
+    </div>
+
+    <div class="mini-stat">
+      <h3>👥 Clientes</h3>
+      <h1>120</h1>
+      <span>+12 nuevos</span>
+    </div>
+
+    <div class="mini-stat">
+      <h3>💰 Ganancias</h3>
+      <h1>S/. 24,850</h1>
+      <span>+22% ingresos</span>
+    </div>
+
+  </div>
+
+  <!-- ✅ Charts solo se montan cuando el DOM está listo -->
+  <div class="charts-grid" *ngIf="chartsListos">
+
+    <div class="chart-card">
+      <h2>Reparaciones mensuales</h2>
+      <div
+        echarts
+        [options]="chartReparaciones"
+        class="chart">
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>Rendimiento técnicos</h2>
+      <div
+        echarts
+        [options]="chartTecnicos"
+        class="chart">
+      </div>
+    </div>
+
+    <div class="chart-card full-width">
+      <h2>Ingresos mensuales</h2>
+      <div
+        echarts
+        [options]="chartIngresos"
+        class="chart large">
+      </div>
+    </div>
+
+  </div>
+
+</div>

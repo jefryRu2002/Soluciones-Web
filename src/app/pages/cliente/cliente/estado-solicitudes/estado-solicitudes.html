@@ -1,0 +1,58 @@
+<!-- estado-solicitudes.html -->
+<div class="estado-page">
+
+  <div class="header">
+    <div>
+      <h1>📍 Estado de solicitudes</h1>
+      <p>Seguimiento en tiempo real de tus equipos</p>
+    </div>
+  </div>
+
+  <div class="buscador-container">
+    <input type="text" placeholder="Buscar por ticket o equipo..." [(ngModel)]="buscador">
+  </div>
+
+  @if (filtradas().length === 0) {
+    <div class="empty">No se encontraron solicitudes</div>
+  }
+
+  @for (s of filtradas(); track s.ticket) {
+    <div class="solicitud-card">
+
+      <div class="solicitud-header">
+        <div class="solicitud-info">
+          <span class="ticket-badge">{{ s.ticket }}</span>
+          <div>
+            <strong>{{ s.equipo }}</strong>
+            <small>{{ s.modelo }}</small>
+          </div>
+        </div>
+        <div class="solicitud-meta">
+          <span>Técnico: <strong>{{ s.tecnico }}</strong></span>
+          <span>Actualizado: {{ s.ultimaActualizacion }}</span>
+        </div>
+      </div>
+
+      <div class="pipeline">
+        @for (paso of pasos; track paso; let i = $index) {
+          <div class="paso-wrapper">
+            <div class="paso"
+              [class.completado]="i < pasoIndex(s.estado)"
+              [class.activo]="paso === s.estado">
+              <div class="circulo">
+                @if (i < pasoIndex(s.estado)) { ✓ }
+                @else { {{ i + 1 }} }
+              </div>
+              <span>{{ paso }}</span>
+            </div>
+            @if (i < pasos.length - 1) {
+              <div class="linea" [class.completada]="i < pasoIndex(s.estado)"></div>
+            }
+          </div>
+        }
+      </div>
+
+    </div>
+  }
+
+</div>

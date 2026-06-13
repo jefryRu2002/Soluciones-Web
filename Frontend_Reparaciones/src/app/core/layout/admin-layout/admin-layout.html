@@ -1,0 +1,117 @@
+<div class="sidebar">
+
+    <!-- LOGO -->
+    <div class="logo">
+        <h2>Reparaciones</h2>
+    </div>
+
+    <!-- PERFIL ADMIN -->
+    <div class="admin-profile">
+        <img
+            src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+            alt="Administrador">
+
+        <h3>Admin</h3>
+    </div>
+
+    <!-- MENU -->
+    <ul class="menu">
+
+        <li>
+            <a routerLink="/administrador/dashboard" routerLinkActive="active">
+                <span class="icono">📊</span>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/reportes" routerLinkActive="active">
+                <span class="icono">📝</span>
+                <span>Reportes</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/asignacion" routerLinkActive="active">
+                <span class="icono">🛠️</span>
+                <span>Asignación</span>
+            </a>
+        </li>
+		<li>
+    <a routerLink="/administrador/tickets" routerLinkActive="active">
+        <span class="icono">🎫</span>
+        <span>Tickets</span>
+    </a>
+</li>
+
+<li>
+    <a routerLink="/administrador/orden-trabajo" routerLinkActive="active">
+        <span class="icono">📋</span>
+        <span>Órdenes de Trabajo</span>
+    </a>
+</li>
+        <li>
+            <a routerLink="/administrador/seguimiento" routerLinkActive="active">
+                <span class="icono">🎫</span>
+                <span>Seguimiento</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/estadisticas" routerLinkActive="active">
+                <span class="icono">📈</span>
+                <span>Estadísticas</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/usuarios" routerLinkActive="active">
+                <span class="icono">👥</span>
+                <span>Usuarios</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/notificaciones" routerLinkActive="active">
+                <span class="icono">🔔</span>
+                <span>Notificaciones</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/gestion-pagos" routerLinkActive="active">
+                <span class="icono">💳</span>
+                <span>Gestion de Pagos</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/devoluciones" routerLinkActive="active">
+                <span class="icono">📦</span>
+                <span>Devoluciones</span>
+            </a>
+        </li>
+
+        <li>
+            <a routerLink="/administrador/configuracion" routerLinkActive="active">
+                <span class="icono">⚙️</span>
+                <span>Configuración</span>
+            </a>
+        </li>
+
+    </ul>
+
+    <!-- LOGOUT -->
+    <div class="logout">
+        <a routerLink="/">
+            <span class="icono">🚪</span>
+            <span>Cerrar sesión</span>
+        </a>
+    </div>
+
+</div>
+
+<!-- CONTENIDO -->
+<div class="contenido">
+    <router-outlet></router-outlet>
+</div>

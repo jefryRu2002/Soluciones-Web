@@ -1,0 +1,221 @@
+/* ============================================
+   EVALUACIÓN DE EQUIPOS - ESTILOS
+   ============================================ */
+
+.eval-page {
+    max-width: 860px;        /* Más compacto, 1200px era demasiado ancho */
+    margin: 0 auto;
+    padding: 32px;
+    background: #f1f5f9;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+    margin-bottom: 28px;     /* Reducido de 40px */
+}
+
+.header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px 0;       /* Sin margen excesivo */
+}
+
+.header p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* ============================================
+   ALERTAS
+   ============================================ */
+.alerta-exito {
+    background: #dcfce7;
+    color: #166534;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #22c55e;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+.alerta-error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #ef4444;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   FORMULARIO PRINCIPAL
+   ============================================ */
+.form-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;            /* Reducido de 40px */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+/* ============================================
+   GRUPOS DE FORMULARIO
+   ============================================ */
+.form-grupo {
+    margin-bottom: 0;         /* El gap del grid maneja el espacio */
+}
+
+.form-grupo.full {
+    margin-bottom: 28px;      /* Solo el ticket superior tiene margen */
+}
+
+.form-grupo label {
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;       /* Reducido de 12px */
+    font-size: 0.9rem;
+}
+
+.form-grupo select,
+.form-grupo input,
+.form-grupo textarea {
+    width: 100%;
+    padding: 11px 16px;       /* Ligeramente más compacto */
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    font-family: inherit;
+    background: white;
+    box-sizing: border-box;
+}
+
+.form-grupo select:focus,
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-grupo select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 18px;
+}
+
+.form-grupo textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.form-grupo input::placeholder,
+.form-grupo textarea::placeholder {
+    color: #94a3b8;
+    font-size: 0.875rem;
+}
+
+/* ============================================
+   SECCIONES
+   ============================================ */
+.seccion {
+    padding: 24px 0;
+    border-top: 1px solid #e2e8f0;  /* Separador arriba en vez de abajo */
+}
+
+.seccion:last-of-type {
+    padding-bottom: 0;
+}
+
+.seccion h3 {
+    font-size: 1rem;               /* Reducido de 1.3rem, más proporcionado */
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #475569;
+}
+
+/* Grid de 2 columnas */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;                     /* Reducido de 32px */
+}
+
+/* ============================================
+   BOTÓN GUARDAR
+   ============================================ */
+.btn-guardar {
+    width: 100%;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-guardar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-guardar:active {
+    transform: translateY(0);
+}
+
+.btn-guardar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .eval-page  { padding: 20px; }
+    .form-card  { padding: 24px; }
+    .form-grid  { grid-template-columns: 1fr; gap: 16px; }
+    .header h1  { font-size: 1.4rem; }
+    .seccion h3 { font-size: 0.9rem; }
+    .seccion    { padding: 20px 0; }
+}
+
+@media (max-width: 480px) {
+    .eval-page  { padding: 16px; }
+    .form-card  { padding: 18px; }
+    .btn-guardar { padding: 13px 18px; font-size: 0.95rem; margin-top: 22px; }
+    .seccion    { padding: 16px 0; }
+}

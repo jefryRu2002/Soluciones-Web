@@ -1,0 +1,45 @@
+<div class="contenedor-notificaciones">
+    
+    <div class="encabezado-notificaciones">
+        <div>
+            <h2 class="titulo-seccion">🔔 Centro de Notificaciones y Cambios</h2>
+            <p class="subtitulo">Monitoreo de actividades, actualizaciones de estado y alertas de servicio en tiempo real.</p>
+        </div>
+        <button class="btn-marcar-todo" (click)='marcarTodasComoLeidas()'>
+            ✓ Marcar todo como leído
+        </button>
+    </div>
+
+    <div class="lista-notificaciones">
+        <div *ngFor="let noti of notificaciones" 
+             class="notificacion-card" 
+             [ngClass]="{'no-leida': !noti.leido}">
+            
+            <div class="notificacion-icono" [ngClass]="'icono-' + noti.tipo">
+                <span *ngIf="noti.tipo === 'tecnico'">⚠️</span>
+                <span *ngIf="noti.tipo === 'pago'">💳</span>
+                <span *ngIf="noti.tipo === 'ticket'">🔄</span>
+                <span *ngIf="noti.tipo === 'usuario'">👥</span>
+            </div>
+
+            <div class="notificacion-contenido">
+                <div class="notificacion-meta">
+                    <span class="categoria-tag">{{ noti.tipo.toUpperCase() }}</span>
+                    <span class="tiempo">{{ noti.fecha }} a las {{ noti.hora }}</span>
+                </div>
+                <h3 class="noti-titulo">{{ noti.titulo }}</h3>
+                <p class="noti-descripcion">{{ noti.descripcion }}</p>
+            </div>
+
+            <div class="notificacion-accion">
+                <button *ngIf="!noti.leido" 
+                        class="btn-leer" 
+                        (click)="marcarComoLeida(noti.id)" 
+                        title="Marcar como leída">
+                    ●
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

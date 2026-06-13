@@ -1,0 +1,81 @@
+<div class="dashboard-page">
+
+  <div class="header">
+    <div>
+      <h1>🏠 Bienvenido, {{ nombreCliente }}</h1>
+      <p>Panel de control de tus solicitudes de reparación</p>
+    </div>
+  </div>
+
+  <!-- TARJETAS -->
+  <div class="stats-cards">
+    <div class="stat-card azul">
+      <div class="icono">🔧</div>
+      <div class="info">
+        <div class="value">{{ resumen[0].value }}</div>
+        <div class="label">{{ resumen[0].label }}</div>
+      </div>
+    </div>
+    <div class="stat-card amarillo">
+      <div class="icono">💳</div>
+      <div class="info">
+        <div class="value">{{ resumen[1].value }}</div>
+        <div class="label">{{ resumen[1].label }}</div>
+      </div>
+    </div>
+    <div class="stat-card verde">
+      <div class="icono">✅</div>
+      <div class="info">
+        <div class="value">{{ resumen[2].value }}</div>
+        <div class="label">{{ resumen[2].label }}</div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <!-- TABLA -->
+  <div class="tabla-container">
+    <div class="tabla-header">
+      <h2>📋 Solicitudes recientes</h2>
+    </div>
+
+    @if (solicitudesRecientes.length === 0) {
+      <div class="empty-state">
+        <p>No hay solicitudes registradas</p>
+        <a routerLink="/cliente/generar-reporte" class="btn-primary">
+          + Crear primera solicitud
+        </a>
+      </div>
+    }
+
+    @if (solicitudesRecientes.length > 0) {
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Equipo</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (solicitud of solicitudesRecientes; track solicitud.id) {
+            <tr>
+              <td><span class="ticket-badge">{{ solicitud.codigo }}</span></td>
+              <td>{{ solicitud.equipo }}</td>
+              <td>
+                <span class="estado" [ngClass]="getEstadoClass(solicitud.estado)">
+                  {{ solicitud.estado }}
+                </span>
+              </td>
+              <td>{{ getFechaFormateada(solicitud.fecha) }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+
+  </div>
+
+</div>

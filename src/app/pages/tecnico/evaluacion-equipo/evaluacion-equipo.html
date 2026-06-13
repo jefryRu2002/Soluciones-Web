@@ -1,0 +1,60 @@
+<!-- evaluaciones.html -->
+<div class="eval-page">
+
+  <div class="header">
+    <div>
+      <h1>🔍 Evaluación de equipos</h1>
+      <p>Registra las especificaciones técnicas y detalles de revisión</p>
+    </div>
+  </div>
+
+  @if (guardado) { <div class="alerta-exito">✅ Evaluación guardada correctamente</div> }
+  @if (error)    { <div class="alerta-error">⚠️ {{ error }}</div> }
+
+  <div class="form-card">
+
+    <div class="form-grupo full">
+      <label>Ticket de orden *</label>
+      <select [(ngModel)]="ticketSeleccionado">
+        <option value="">Selecciona un ticket</option>
+        @for (t of tickets; track t) {
+          <option [value]="t">{{ t }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="seccion">
+      <h3>⚙️ Especificaciones técnicas</h3>
+      <div class="form-grid">
+        <div class="form-grupo">
+          <label>Procesador</label>
+          <input type="text" placeholder="Ej: Intel Core i5-10gen" [(ngModel)]="evaluacion.procesador">
+        </div>
+        <div class="form-grupo">
+          <label>RAM</label>
+          <input type="text" placeholder="Ej: 8GB DDR4" [(ngModel)]="evaluacion.ram">
+        </div>
+        <div class="form-grupo">
+          <label>Almacenamiento</label>
+          <input type="text" placeholder="Ej: 256GB SSD" [(ngModel)]="evaluacion.almacenamiento">
+        </div>
+        <div class="form-grupo">
+          <label>Sistema operativo</label>
+          <input type="text" placeholder="Ej: Windows 11" [(ngModel)]="evaluacion.sistemaOperativo">
+        </div>
+      </div>
+    </div>
+
+    <div class="seccion">
+      <h3>📝 Detalles de revisión</h3>
+      <div class="form-grupo">
+        <label>Descripción técnica *</label>
+        <textarea rows="5" placeholder="Describe los hallazgos técnicos, causa de la falla y solución propuesta..." [(ngModel)]="evaluacion.detallesRevision"></textarea>
+      </div>
+    </div>
+
+    <button class="btn-guardar" (click)="guardarEvaluacion()">💾 Guardar evaluación</button>
+
+  </div>
+
+</div>

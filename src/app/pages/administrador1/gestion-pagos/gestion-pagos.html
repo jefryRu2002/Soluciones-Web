@@ -1,0 +1,56 @@
+<div class="contenedor-pagos">
+
+    <h2 class="titulo-seccion">💳 Gestión y Control de Pagos</h2>
+
+    <div class="tabla-responsiva">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Solicitud</th>
+                    <th>Monto</th>
+                    <th>Método</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let pago of pagos">
+                    <td><strong>#{{ pago.id }}</strong></td>
+                    <td>
+                        <div class="cliente-celda">
+                            <strong>{{ pago.cliente }}</strong>
+                        </div>
+                    </td>
+                    <td>{{ pago.solicitud }}</td>
+                    <td><span class="monto-destacado">S/. {{ pago.monto }}</span></td>
+                    <td><span class="metodo-tag">{{ pago.metodo }}</span></td>
+                    <td>{{ pago.fecha }}</td>
+                    <td>
+                        <span class="badge" [ngClass]="{
+                            'badge-pagado': pago.estado === 'Aprobado' || pago.estado === 'Pagado',
+                            'badge-pendiente': pago.estado === 'Pendiente',
+                            'badge-rechazado': pago.estado === 'Rechazado'
+                        }">
+                            {{ pago.estado }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="acciones-flex">
+                            <button class="btn-accion btn-ver" title="Ver Comprobante">
+                                👁️ Ver
+                            </button>
+                            <button *ngIf="pago.estado === 'Pendiente'" class="btn-accion btn-aprobar" title="Aprobar Pago">
+                                ✓ Aprobar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

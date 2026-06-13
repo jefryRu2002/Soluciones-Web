@@ -1,0 +1,81 @@
+<!-- ordenes-asignadas.html -->
+<div class="ordenes-page">
+
+  <div class="header">
+    <div>
+      <h1>📋 Órdenes asignadas</h1>
+      <p>Fichas de internamiento de equipos a tu cargo</p>
+    </div>
+  </div>
+
+  <div class="ordenes-grid">
+
+    <div class="ordenes-lista">
+      @for (o of ordenes(); track o.ticket) {
+        <div
+          class="orden-item"
+          [class.activa]="ordenDetalle?.ticket === o.ticket"
+          (click)="ordenDetalle = o">
+          <div class="orden-item-top">
+            <span class="ticket-badge">{{ o.ticket }}</span>
+            <span class="estado" [class.terminado]="o.recepcionada" [class.pendiente]="!o.recepcionada">
+              {{ o.recepcionada ? 'Recepcionada' : 'Pendiente' }}
+            </span>
+          </div>
+          <strong>{{ o.equipo }}</strong>
+          <p>{{ o.cliente }}</p>
+          <small>Plazo: {{ o.plazo }}</small>
+        </div>
+      }
+    </div>
+
+    <div class="orden-detalle">
+      @if (!ordenDetalle) {
+        <div class="empty-detalle">👈 Selecciona una orden para ver el detalle</div>
+      }
+      @if (ordenDetalle) {
+        <div class="detalle-card">
+          <div class="detalle-header">
+            <span class="ticket-badge grande">{{ ordenDetalle.ticket }}</span>
+            <span class="estado" [class.terminado]="ordenDetalle.recepcionada" [class.pendiente]="!ordenDetalle.recepcionada">
+              {{ ordenDetalle.recepcionada ? 'Recepcionada' : 'Pendiente' }}
+            </span>
+          </div>
+
+          <div class="detalle-grid">
+            <div class="detalle-campo">
+              <label>Cliente</label><p>{{ ordenDetalle.cliente }}</p>
+            </div>
+            <div class="detalle-campo">
+              <label>Equipo</label><p>{{ ordenDetalle.equipo }}</p>
+            </div>
+            <div class="detalle-campo">
+              <label>Modelo</label><p>{{ ordenDetalle.modelo }}</p>
+            </div>
+            <div class="detalle-campo">
+              <label>N° de serie</label><p>{{ ordenDetalle.serie }}</p>
+            </div>
+            <div class="detalle-campo">
+              <label>Fecha ingreso</label><p>{{ ordenDetalle.fechaIngreso }}</p>
+            </div>
+            <div class="detalle-campo">
+              <label>Plazo</label><p>{{ ordenDetalle.plazo }}</p>
+            </div>
+            <div class="detalle-campo full">
+              <label>Descripción de la falla</label>
+              <p class="descripcion">{{ ordenDetalle.descripcion }}</p>
+            </div>
+          </div>
+
+          @if (!ordenDetalle.recepcionada) {
+            <button class="btn-recepcionar" (click)="recepcionar(ordenDetalle.ticket)">
+              ✅ Recepcionar orden
+            </button>
+          }
+        </div>
+      }
+    </div>
+
+  </div>
+
+</div>
