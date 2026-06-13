@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 
 // Interfaz local para definir la estructura de tus objetos
@@ -72,3 +73,13 @@ export class NotificacionesAdmin {
     this.notificaciones.forEach(n => n.leido = true);
   }
 }
+=======
+
+@Component({
+  selector: 'app-notificaciones',
+  imports: [],
+  templateUrl: './notificaciones.html',
+  styleUrl: './notificaciones.css',
+})
+export class Notificaciones {}
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4

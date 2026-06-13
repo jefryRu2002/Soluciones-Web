@@ -32,7 +32,32 @@
     </div>
   </div>
 
+<<<<<<< HEAD
   
+=======
+  <!-- ACCESOS RÁPIDOS -->
+  <div class="accesos-rapidos">
+    <a routerLink="/cliente/generar-reporte" class="acceso-card">
+      <span>📝</span>
+      <p>Generar Solicitud</p>
+    </a>
+    <a routerLink="/cliente/estado-solicitudes" class="acceso-card">
+      <span>📍</span>
+      <p>Estado solicitudes</p>
+    </a>
+    <a routerLink="/cliente/notificaciones" class="acceso-card">
+      <span>🔔</span>
+      <p>Notificaciones</p>
+      @if (notificacionesNoLeidas > 0) {
+        <span class="badge">{{ notificacionesNoLeidas }}</span>
+      }
+    </a>
+    <a routerLink="/cliente/perfil" class="acceso-card">
+      <span>👤</span>
+      <p>Mi perfil</p>
+    </a>
+  </div>
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 
   <!-- TABLA -->
   <div class="tabla-container">

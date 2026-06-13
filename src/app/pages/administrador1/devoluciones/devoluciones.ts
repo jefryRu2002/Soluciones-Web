@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { CommonModule } from '@angular/common';
 
 interface DevolucionEquipo {
@@ -53,3 +54,13 @@ export class Devoluciones {
     }
   }
 }
+=======
+
+@Component({
+  selector: 'app-devoluciones',
+  imports: [],
+  templateUrl: './devoluciones.html',
+  styleUrl: './devoluciones.css',
+})
+export class Devoluciones {}
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4

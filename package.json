@@ -20,7 +20,10 @@
     "@angular/platform-server": "^21.2.0",
     "@angular/router": "^21.2.0",
     "@angular/ssr": "^21.2.9",
+<<<<<<< HEAD
     "@clerk/clerk-js": "^6.14.0",
+=======
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
     "echarts": "^6.1.0",
     "express": "^5.1.0",
     "keycloak-js": "^26.2.4",

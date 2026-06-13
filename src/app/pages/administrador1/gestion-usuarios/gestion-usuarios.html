@@ -16,16 +16,21 @@
 
         </div>
 
+<<<<<<< HEAD
         <div class="nuevo-usuario-container">
 
         <button
             class="btn-nuevo"
             (click)="mostrarOpciones = !mostrarOpciones">
+=======
+        <button class="btn-nuevo">
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 
             + Nuevo Usuario
 
         </button>
 
+<<<<<<< HEAD
         <div
             class="menu-nuevo-usuario"
             *ngIf="mostrarOpciones">
@@ -53,6 +58,10 @@
     </div>
 
 
+=======
+    </div>
+
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
     <!-- BUSCADOR -->
 
     <div class="buscador-container">
@@ -68,6 +77,7 @@
 
     <div class="cards-resumen">
 
+<<<<<<< HEAD
         <div class="card-mini" 
         (click)="filtrarPorRol('')">
 
@@ -77,6 +87,9 @@
 
         <div class="card-mini"
         (click)="filtrarPorRol('Cliente')">
+=======
+        <div class="card-mini">
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 
             <h3>
                 👥 Clientes
@@ -88,8 +101,12 @@
 
         </div>
 
+<<<<<<< HEAD
         <div class="card-mini"
         (click)="filtrarPorRol('Técnico')">
+=======
+        <div class="card-mini">
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 
             <h3>
                 🛠️ Técnicos
@@ -101,8 +118,12 @@
 
         </div>
 
+<<<<<<< HEAD
         <div class="card-mini"
         (click)="filtrarPorRol('Administrador')">
+=======
+        <div class="card-mini">
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 
             <h3>
                 🛡️ Administradores
@@ -126,6 +147,7 @@
 
                 <tr>
 
+<<<<<<< HEAD
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
@@ -149,6 +171,12 @@
                         Sueldo
                     </th>
 
+=======
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
                     <th>Estado</th>
                     <th>Acciones</th>
 
@@ -162,11 +190,19 @@
                     *ngFor="let usuario of usuariosFiltrados">
 
                     <td>
+<<<<<<< HEAD
                         {{ usuario.nombre }}
                     </td>
 
                     <td>
                         {{ usuario.apellido }}
+=======
+                        {{ usuario.id }}
+                    </td>
+
+                    <td>
+                        {{ usuario.nombre }}
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
                     </td>
 
                     <td>
@@ -174,6 +210,7 @@
                     </td>
 
                     <td>
+<<<<<<< HEAD
                         {{ usuario.telefono }}
                     </td>
 
@@ -193,6 +230,9 @@
 
                     <td *ngIf="filtroRol === 'Técnico'">
                         {{ usuario.sueldo }}
+=======
+                        {{ usuario.rol }}
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
                     </td>
 
                     <td>
@@ -230,7 +270,11 @@
 
                         <button
                             class="btn-eliminar"
+<<<<<<< HEAD
                             (click)="eliminarUsuario(usuario.correo)">
+=======
+                            (click)="eliminarUsuario(usuario.id)">
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 
                             🗑️
 
@@ -246,6 +290,7 @@
 
     </div>
 
+<<<<<<< HEAD
     <!-- VENTANA FLOTANTE -->
     <div class="modal-overlay" *ngIf="mostrarModal">
 
@@ -315,3 +360,6 @@
     </div>
 
 </div>
+=======
+</div>
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4

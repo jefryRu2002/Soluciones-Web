@@ -184,6 +184,7 @@ tbody tr:hover{
 
 .acciones button:hover{
     transform:scale(1.1);
+<<<<<<< HEAD
 }
 
 /* MENU NUEVO USUARIO */
@@ -315,4 +316,6 @@ tbody tr:hover{
 .modal-acciones button:last-child{
     background: #2563eb;
     color: white;
+=======
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
 }

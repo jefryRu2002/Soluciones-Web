@@ -12,15 +12,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class GenerarReporte {
 
+<<<<<<< HEAD
   // Variables auxiliares para controlar el flujo visual de la marca en el formulario
   marcaSeleccionada: string = '';
   otraMarca: string = '';
 
+=======
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
   reporte = {
     nombreCliente: 'Juan Pérez',
     cargo: '',
     servicio: '',
+<<<<<<< HEAD
     marca: '', // Aquí se guardará el valor final ("HP", "Lenovo", etc., o la marca personalizada)
+=======
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
     nombreEquipo: '',
     modelo: '',
     serie: '',
@@ -33,6 +39,7 @@ export class GenerarReporte {
   codigoOperacion = '';
   error = '';
 
+<<<<<<< HEAD
   // Controla el cambio en el select de marcas
   onMarcaChange(): void {
     if (this.marcaSeleccionada !== 'Otras') {
@@ -55,6 +62,12 @@ export class GenerarReporte {
     const obligatorios = [
       this.reporte.nombreCliente,
       this.reporte.marca,
+=======
+  enviarReporte(): void {
+    this.error = '';
+    const obligatorios = [
+      this.reporte.nombreCliente,
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
       this.reporte.nombreEquipo,
       this.reporte.modelo,
       this.reporte.serie,
@@ -62,8 +75,12 @@ export class GenerarReporte {
       this.reporte.recibidoPor
     ];
 
+<<<<<<< HEAD
     // Se valida que existan y que no contengan solo espacios en blanco
     if (obligatorios.some(c => !c || !c.trim())) {
+=======
+    if (obligatorios.some(c => !c.trim())) {
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
       this.error = 'Completa todos los campos obligatorios.';
       return;
     }
@@ -74,6 +91,7 @@ export class GenerarReporte {
   }
 
   nuevoReporte(): void {
+<<<<<<< HEAD
     // Reseteamos las variables auxiliares de control de marcas
     this.marcaSeleccionada = '';
     this.otraMarca = '';
@@ -91,6 +109,14 @@ export class GenerarReporte {
       recibidoPor: ''
     };
     
+=======
+    this.reporte = {
+      nombreCliente: 'Juan Pérez',
+      cargo: '', servicio: '', nombreEquipo: '',
+      modelo: '', serie: '', descripcionFalla: '',
+      informadoA: '', recibidoPor: ''
+    };
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
     this.enviado = false;
     this.codigoOperacion = '';
   }

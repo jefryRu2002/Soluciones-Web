@@ -121,7 +121,10 @@ export class ClienteDashboard implements OnInit {
   irAEstadoSolicitudes(): void { this.router.navigate(['/cliente/estado-solicitudes']); }
   irANotificaciones(): void    { this.router.navigate(['/cliente/notificaciones']); }
   irAMiPerfil(): void          { this.router.navigate(['/cliente/perfil']); }
+<<<<<<< HEAD
   irPagos(): void {this.router.navigate(['/cliente/pagos']);}
+=======
+>>>>>>> b8d8e01aecd5ca58ea5921e2c2b744f81ed431c4
   cerrarSesion(): void {
     localStorage.removeItem('clienteActual');
     this.router.navigate(['/']);
